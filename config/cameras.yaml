@@ -1,0 +1,33 @@
+
+- platform: generic
+  name: Playroom
+  stream_source: !secret cam_playroom_shinobi
+  still_image_url: !secret cam_playroom_still_image
+
+- platform: onviffy
+  host: !secret cam_rear_onvif
+  name: Back Garden
+  port: !secret onvif_port
+  password: !secret onvif_pass
+
+- platform: onviffy
+  host: !secret cam_front_onvif
+  name: Front Garden
+  port: !secret onvif_port
+  password: !secret onvif_pass
+
+- name: Garden Last Person
+  platform: mqtt
+  topic: frigate/garden/person/snapshot
+
+- name: Driveway Last Person
+  platform: mqtt
+  topic: frigate/driveway/person/snapshot
+
+# - name: Driveway Last Car
+#   platform: mqtt
+#   topic: frigate/driveway/car/snapshot
+
+# - name: Driveway Last Truck
+#   platform: mqtt
+#   topic: frigate/driveway/truck/snapshot

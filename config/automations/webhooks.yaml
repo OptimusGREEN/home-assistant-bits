@@ -1,0 +1,11 @@
+- alias: Webhook Reciever
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: call_service
+  action:
+    service_template: '{{ trigger.event.data.service }}'
+    data_template:
+      entity_id: '{{ trigger.event.data.entity_id }}'
+  id: 25b2c71f8db5457c9b8a712173a5a898

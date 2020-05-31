@@ -1,0 +1,5 @@
+- id: '1576077925922'
+  name: Xmas Playroom
+  entities:
+    group.play_room_lights:
+      state: 'on'

@@ -1,0 +1,19 @@
+- platform: template
+  sensors:
+    devtest_template1:
+      friendly_name: "DevTest Template Sensor 1"
+      value_template: "dev1"
+
+- platform: template
+  sensors:
+    devtest_template2:
+      friendly_name: "DevTest Template Sensor 2"
+      value_template: "dev2"
+
+- platform: mqtt
+  name: "DevTest Mqtt Sensor 1"
+  state_topic: "dev/test/sensor1"
+
+- platform: mqtt
+  name: "DevTest Mqtt Sensor 2"
+  state_topic: "dev/test/sensor2"

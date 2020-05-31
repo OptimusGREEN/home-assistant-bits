@@ -1,0 +1,61 @@
+- id: '1585950029208'
+  alias: Alarm not set
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.someone_home
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.security_alarm_status
+    state: 'off'
+  action:
+    service: notify.jmg
+    data:
+      message: Alarm has not been armed
+      title: Security Alarm
+      data:
+        channel: Important
+    
+
+- alias: Intruder Alarm Triggered
+  trigger:
+    platform: state
+    entity_id: binary_sensor.security_alarm_alert
+    to: 'on'
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.all_downstairs_lights
+          - switch.landing_light_switch_top
+    - service: script.turn_on
+      data:
+        entity_id: script.intruder_alert_loop
+    - service: notify.jmg
+      data:
+        message: Security Alarm Alert
+        title: Security Alarm
+        data:
+          channel: Alarm Alert
+
+- alias: Intruder Alarm Reset
+  trigger:
+    platform: state
+    entity_id: binary_sensor.security_alarm_alert
+    to: 'off'
+  action:
+  - service: script.turn_off
+    data:
+      entity_id: script.intruder_alert_loop
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+        - group.all_downstairs_lights
+        - switch.landing_light_switch_top
+  - service: media_player.media_stop
+    data:
+      entity_id:
+        - media_player.downstairs_speakers
+        - media_player.bedroom_speaker

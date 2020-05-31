@@ -1,0 +1,274 @@
+# default_view:
+#   view: yes
+#   entities:
+    # - group.living_room_lights
+    # - group.play_room_lights
+########### All Lights #############
+
+All Lights:
+  name: All Lights
+  entities:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.living_room_lamp_3
+    - light.standing_lamp
+    - light.dining_room_lamp_1
+    - light.dining_room_lamp_2
+    - light.hall_front
+    - light.hall_back
+    - light.playroom_sofa1
+    - light.playroom_sofa2
+    - light.playroom_centre1
+    - light.playroom_centre2
+    - light.playroom_tv1
+    - light.playroom_tv2
+    - light.ensuite_light
+    - light.bedside_lamp_1
+    - light.bedside_lamp_2
+
+########### Downstairs Lights #############
+
+########### Downstairs Lights Main #############
+
+Main Downstairs Lights:
+  name: Main Downstairs Lights
+  entities:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.living_room_lamp_3
+    - light.standing_lamp
+    - light.dining_room_lamp_1
+    - light.dining_room_lamp_2
+    - switch.radiator_light
+    - switch.living_room_unit_lights
+    
+
+########### Downstairs Lights All #############
+
+All Downstairs Lights:
+  name: All Downstairs Lights
+  entities:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.living_room_lamp_3
+    - light.standing_lamp
+    - light.dining_room_lamp_1
+    - light.dining_room_lamp_2
+    - light.hall_front
+    - light.hall_back
+    - light.playroom_sofa1
+    - light.playroom_sofa2
+    - light.playroom_centre1
+    - light.playroom_centre2
+    - light.playroom_tv1
+    - light.playroom_tv2
+    - switch.tv_back_light
+    - switch.radiator_light
+    - switch.living_room_unit_lights
+    - switch.living_room_ceiling_light
+    - switch.back_outside_light_switch
+    - switch.wc_switch
+    - switch.front_outside_light_switch
+    - switch.kitchen_light_switch
+
+########### Hall Lights #############
+
+Hall Lights:
+  name: Hall Lights
+  entities:
+    - light.hall_front
+    - light.hall_back
+
+########### Downstairs Lights Bed Time #############
+
+Bedtime Downstairs Lights:
+  name: Bedtime Downstairs Lights
+  entities:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.living_room_lamp_3
+    - light.standing_lamp
+    - light.dining_room_lamp_1
+    - light.dining_room_lamp_2
+    # - light.hall_front
+    - light.hall_back
+    - light.playroom_sofa1
+    - light.playroom_sofa2
+    - light.playroom_centre1
+    - light.playroom_centre2
+    - light.playroom_tv1
+    - light.playroom_tv2
+    - switch.tv_back_light
+    - switch.radiator_light
+    - switch.living_room_unit_lights
+    - switch.living_room_ceiling_light
+    - switch.main_lights_lr_switch
+    - switch.playroom_tl
+    - switch.playroom_tr
+    - switch.playroom_bl
+    - switch.playroom_br
+    - switch.main_lights_lr_switch
+    - switch.front_outside_light_switch
+    - switch.back_outside_light_switch
+    - switch.hall_light_switch_front
+    # - switch.hall_light_switch_back
+    - switch.wc_switch
+    # - switch.kitchen_light_switch
+
+########### Living Room #############
+
+Living Room Lights:
+  name: Living Room Lights
+  entities:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+    - light.living_room_lamp_3
+    - light.standing_lamp
+    - switch.tv_back_light
+    - switch.radiator_light
+    - switch.living_room_unit_lights
+    - switch.living_room_ceiling_light
+
+########### Dining Room #############
+
+Dining Room Lights:
+  name: Dining Room Lights
+  entities:
+    - light.dining_room_lamp_1
+    - light.dining_room_lamp_2
+
+########### Play Room #############
+
+Play Room Lights:
+  name: Play Room Lights
+  entities:
+    - light.playroom_sofa1
+    - light.playroom_sofa2
+    - light.playroom_centre1
+    - light.playroom_centre2
+    - light.playroom_tv1
+    - light.playroom_tv2
+
+Play Room Row 1:
+  name: Row 1
+  entities:
+    - light.playroom_sofa1
+    - light.playroom_centre1
+    - light.playroom_tv1
+
+Play Room Row 2:
+  name: Row 2
+  entities:
+    - light.playroom_sofa2
+    - light.playroom_centre2
+    - light.playroom_tv2
+
+Play Room Sofa:
+  name: Sofa
+  entities:
+    - light.playroom_sofa1
+    - light.playroom_sofa2
+
+Play Room Centre:
+  name: Centre
+  entities:
+    - light.playroom_centre1
+    - light.playroom_centre2
+
+Play Room Tv:
+  name: TV
+  entities:
+    - light.playroom_tv1
+    - light.playroom_tv2
+
+########### Upstairs Lights #############
+  
+########### Upstairs Lights All #############
+
+Upstairs Lights:
+  name: Upstairs Lights
+  entities:
+    - switch.landing_light_switch_top
+    - switch.bathroom_light_switch
+    - light.ensuite_light
+    - light.bedside_lamp_1
+    - light.bedside_lamp_2
+
+Night Lights:
+  name: Night Lights
+  entities:
+    - switch.landing_light_switch_top
+    - switch.bathroom_light_switch
+
+########### Bedroom Lights #############
+
+Bedroom Lights:
+  name: Bedroom Lights
+  entities:
+    - light.bedside_lamp_1
+    - light.bedside_lamp_2
+    - switch.under_bed_light
+
+Bedside Lamps:
+  name: Bedside Lamps
+  entities:
+    - light.bedside_lamp_1
+    - light.bedside_lamp_2
+
+########### Auto Off Switches #############
+
+Auto Off Switches:
+  name: Auto Off Switches
+  entities:
+    - group.light_switches
+
+########### Light Switches #############
+
+Light Switches:
+  name: Light Switches
+  entities:
+    - switch.main_lights_lr_switch
+    - switch.living_room_ceiling_light
+    - switch.living_room_unit_lights
+    - switch.tv_back_light
+    - switch.radiator_light
+    - switch.playroom_tl
+    - switch.playroom_tr
+    - switch.playroom_bl
+    - switch.playroom_br
+    - switch.front_outside_light_switch
+    - switch.hall_light_switch_front
+    - switch.landing_light_switch_top
+    # - switch.hall_light_switch_back
+    # - switch.landing_light_switch_bottom
+    - switch.bathroom_light_switch
+    - switch.back_outside_light_switch
+    - switch.wc_switch
+    - switch.kitchen_light_switch
+    - switch.under_bed_light
+
+
+########### Christmas Lights #############
+
+# christmas_lights:
+#   name: Christmas Lights
+#   entities:
+#   # - switch.christmas_tree
+#   - switch.outside_christmas_lights
+#   - switch.outside_christmas_decorations
+
+# outdoor_christmas_stuff:
+#   name: Outdoor Christmas Stuff
+#   entities:
+#   - switch.outside_christmas_lights
+#   - switch.outside_christmas_decorations
+
+
+########### Intruder Alert #############
+
+alarm_speakers:
+  name: Intruder Alarm Speakers
+  entities:
+  - media_player.downstairs_speakers
+  - media_player.bedroom_speaker
+  - media_player.s8_ha_app

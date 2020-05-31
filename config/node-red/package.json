@@ -1,0 +1,14 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red-contrib-bool-gate": "~1.0.2",
+        "node-red-contrib-collector": "0.0.1",
+        "node-red-contrib-harmony": "~1.2.6",
+        "node-red-contrib-heater-controller": "~1.2.2",
+        "node-red-contrib-nora": "0.0.24",
+        "node-red-contrib-schedex": "~1.6.2"
+    }
+}

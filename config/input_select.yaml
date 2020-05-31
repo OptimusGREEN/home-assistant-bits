@@ -1,0 +1,20 @@
+heating_area:
+  name: Heating Area
+  options:
+    - "Average"
+    - "Lounge"
+    - "Bedroom"
+    - "Olivia's Room"
+    - "Ben's Room"
+    - "Playroom"
+  initial: "Average"
+  icon: mdi:select
+
+heating_boost_duration:
+  name: Heating Boost Duration
+  options:
+    - 15
+    - 30
+    - 45
+    - 60
+  initial: 30

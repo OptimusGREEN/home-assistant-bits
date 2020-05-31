@@ -1,0 +1,15 @@
+- id: '1571814474765'
+  alias: Morning 20°c
+  description: ''
+  trigger:
+  - at: 05:30
+    platform: time
+  condition:
+  - condition: state
+    entity_id: binary_sensor.someone_home
+    state: 'on'
+  action:
+  - data:
+      temperature: 20
+    service: climate.set_temperature
+    entity_id: climate.virtual_stat

@@ -1,0 +1,32 @@
+# - platform: generic_thermostat
+#   name: Hall Stat
+#   heater: switch.dummy_heater_switch_1
+#   target_sensor: sensor.current_temperature
+#   min_temp: 5
+#   max_temp: 35
+#   ac_mode: false
+#   # target_temp: 17
+#   cold_tolerance: 0.3
+#   hot_tolerance: 0.1
+#   min_cycle_duration:
+#     seconds: 30
+#   keep_alive:
+#     seconds: 60
+#   initial_hvac_mode: "heat"
+#   away_temp: 15
+#   precision: 0.5
+
+- platform: generic_thermostat
+  name: Virtual Stat
+  heater: switch.heating
+  target_sensor: sensor.virtual_stat_current_temp
+  min_temp: 5
+  max_temp: 35
+  cold_tolerance: 0.3
+  hot_tolerance: 0.1
+  ac_mode: false
+  min_cycle_duration:
+    seconds: 30
+  initial_hvac_mode: "heat"
+  # away_temp: 15
+  precision: 0.5

@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    heating_boost_timer:
+      friendly_name: "Heating Boost"
+      value_template: "-"
+      device_class: timestamp

@@ -1,0 +1,4 @@
+motion_backcam1:
+  duration: 30
+  name: "BC1 Motion Timer"
+  icon: "mdi:timer"

@@ -1,0 +1,117 @@
+# - alias: Hassio Restarted Sound - Not Home
+#   trigger:
+#     platform: homeassistant
+#     event: start
+#   condition:
+#     condition: or
+#     conditions:
+#     - condition: state
+#       entity_id: person.john
+#       state: not_home
+#     - condition: time
+#       after: '21:00:00'
+#       before: 08:00:00
+#   action:
+#   - service: notify.mobile_app_optimusgalaxy
+#     data:
+#       title: Home Assistant
+#       message: Hassio has been restarted!
+#   id: 2fb1b7fc85f64188a6ffcc772670457d
+# - alias: Hassio Restarted Sound
+#   trigger:
+#     platform: homeassistant
+#     event: start
+#   condition:
+#     condition: and
+#     conditions:
+#     - condition: state
+#       entity_id: person.john
+#       state: home
+#     - condition: time
+#       after: 08:00:00
+#       before: '21:00:00'
+#   action:
+#   - service: media_player.play_media
+#     data:
+#       entity_id: media_player.living_room_speaker
+#       media_content_id: http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3
+#       media_content_type: music
+#   id: 3fd356ecd0734d46a96a3dd8c1d8cc0c
+
+- alias: Hassio Restarted Notification
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+  - service: notify.mobile_app_johns8
+    data:
+      title: Home Assistant
+      message: Hassio has been restarted!
+  id: 2fb1b7fc85f64188a6ffcc772670457d
+
+# - alias: shutown time script
+#   trigger:
+#     platform: homeassistant
+#     event: stop
+#   action:
+#     service: python_script.shutdown_timestamp
+#     data_template:
+#       entity_id: sensor.timestamp_stopped
+#       state: "{{ as_timestamp(now()) }}"
+
+
+# - alias: startup time script
+#   trigger:
+#     platform: homeassistant
+#     event: start
+#   action:
+#     service: python_script.startup_timestamp
+#     data_template:
+#       entity_id: sensor.timestamp_started
+#       state: "{{ as_timestamp(now()) }}"
+
+- id: '1578835915643'
+  alias: timestamp stopped
+  description: ''
+  trigger:
+    # platform: homeassistant
+    # event: stop
+    # platform: event
+    # event_type: homeassistant_stop
+    platform: state
+    entity_id: input_boolean.restart_homeassistant
+    to: 'on'
+  action:
+    service_template: mqtt.publish
+    data_template:
+      topic: "homeassistant/timestamp/stopped"
+      payload: '{{ as_timestamp(now()) }}'
+      retain: true
+  
+# - id: notify-hass-stop
+#   alias: Home Assistant Stop - Notify
+#   initial_state: 'on'
+#   trigger:
+#     platform: event
+#     event_type: homeassistant_stop
+#   action:
+#     service: notify.hassnico_bot
+#     data:
+#       message: "Home Assistant Stop at {{ states('sensor.date_time') }}"
+
+- id: '1576835965683'
+  alias: timestamp started
+  description: ''
+  trigger:
+    platform: homeassistant
+    event: start
+    # platform: event
+    # event_type: homeassistant_start
+  condition: []
+  action:
+    service_template: mqtt.publish
+    data_template:
+      topic: "homeassistant/timestamp/started"
+      payload: '{{ as_timestamp(now()) }}'
+      # retain: true
+

@@ -1,0 +1,24 @@
+- platform: mqtt
+  name: "TRC - Middle Button"
+  state_topic: "home-assistant/trc/middle"
+  expire_after: 1
+
+- platform: mqtt
+  name: "TRC - Top Button"
+  state_topic: "home-assistant/trc/top"
+  expire_after: 1
+
+- platform: mqtt
+  name: "TRC - Bottom Button"
+  state_topic: "home-assistant/trc/bottom"
+  expire_after: 1
+
+- platform: mqtt
+  name: "TRC - Left Button"
+  state_topic: "home-assistant/trc/left"
+  expire_after: 1
+
+- platform: mqtt
+  name: "TRC - Right Button"
+  state_topic: "home-assistant/trc/right"
+  expire_after: 1

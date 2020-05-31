@@ -1,0 +1,190 @@
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_use_percent
+    - type: processor_use
+
+# CPU temperature
+- platform: command_line
+  name: CPU Temperature cat
+  command: "cat /sys/class/thermal/thermal_zone2/temp"
+  unit_of_measurement: "°C"
+  scan_interval: 30
+  value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+
+- platform: template
+  sensors:
+    restart_duration:
+      friendly_name: "Restart Duration"
+      value_template: ""
+      device_class: timestamp
+
+- platform: mqtt
+  name: "Timestamp Stopped"
+  state_topic: "homeassistant/timestamp/stopped"
+
+- platform: mqtt
+  name: "Timestamp Started"
+  state_topic: "homeassistant/timestamp/started"
+
+##### OptiSERVE ######
+
+- platform: mqtt
+  name: "System2Mqtt State"
+  state_topic: "OptiSERVE/system2mqtt/LWT"
+
+- platform: mqtt
+  name: "OptiSERVE_Fusion Storage"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/storage/OptiSERVE_Fusion"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "OptiSERVE_1TB_1 Storage"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/storage/OptiSERVE_1TB_1"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "OptiSERVE_1TB_2 Storage"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/storage/OptiSERVE_1TB_2"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "OptiSERVE_Server Storage"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/storage/OptiSERVE_Server"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "OptiSERVE_Backup Storage"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/storage/OptiSERVE_Backup"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "CPU Temperature"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/temperature/cpu"
+  device_class: temperature
+  unit_of_measurement: "°C"
+  icon: mdi:thermometer-lines
+
+####### iMac ########
+
+- platform: mqtt
+  name: "iMac System2Mqtt State"
+  state_topic: "Apple/iMac/system2mqtt/LWT"
+
+- platform: mqtt
+  name: "iMac CPU Temperature"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/cpu/temperature"
+  device_class: temperature
+  unit_of_measurement: "°C"
+  icon: mdi:thermometer-lines
+
+- platform: mqtt
+  name: "iMac CPU"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/cpu/percent"
+  unit_of_measurement: "%"
+  icon: mdi:chip
+
+- platform: mqtt
+  name: "iMac SSD"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/storage/Macintosh SSD"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "iMac Storage"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/storage/Storage HDD"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "iMac My Book"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/storage/My Book"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "iMac PS4 HDD"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/storage/PS4"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "iMac USB TimeMachine"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/storage/USB TimeMachine"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "iMac FW TimeMachine"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/storage/FW TimeMachine"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "iMac Memory"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/memory/percent"
+  unit_of_measurement: "%"
+  icon: mdi:memory
+
+####### MacBook ########
+
+- platform: mqtt
+  name: "MacBook System2Mqtt State"
+  state_topic: "Apple/MacBook/system2mqtt/LWT"
+
+- platform: mqtt
+  name: "MacBook CPU Temperature"
+  availability_topic: "Apple/MacBook/system2mqtt/LWT"
+  state_topic: "Apple/MacBook/cpu/temperature"
+  device_class: temperature
+  unit_of_measurement: "°C"
+  icon: mdi:thermometer-lines
+
+- platform: mqtt
+  name: "MacBook CPU"
+  availability_topic: "Apple/MacBook/system2mqtt/LWT"
+  state_topic: "Apple/MacBook/cpu/percent"
+  unit_of_measurement: "%"
+  icon: mdi:chip
+
+- platform: mqtt
+  name: "MacBook SSD"
+  availability_topic: "Apple/MacBook/system2mqtt/LWT"
+  state_topic: "Apple/MacBook/disks/storage/MacBook SSD"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "MacBook TimeMachine"
+  availability_topic: "Apple/MacBook/system2mqtt/LWT"
+  state_topic: "Apple/MacBook/disks/storage/MacBook TimeMachine"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "MacBook Memory"
+  availability_topic: "Apple/MacBook/system2mqtt/LWT"
+  state_topic: "Apple/MacBook/memory/percent"
+  unit_of_measurement: "%"
+  icon: mdi:memory

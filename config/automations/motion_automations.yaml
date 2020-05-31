@@ -1,0 +1,128 @@
+- id: '1572895271725'
+  alias: Back Light Motion On
+  description: ''
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_garden_motion
+      from: 'off'
+      to: 'on'
+      for:
+        seconds: 5
+  condition:
+    - condition: state
+      entity_id: input_boolean.getting_dark
+      state: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: switch.back_outside_light_switch
+
+- id: '1572897651725'
+  alias: Back Light Motion Off
+  description: ''
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_garden_motion
+      to: 'off'
+      for:
+        minutes: 1
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: switch.back_outside_light_switch
+
+- alias: Playroom Motion Unoccupied
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.playroom_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 30
+  # condition:
+  #   - condition: state
+  #     entity_id: "group.play_room_lights"
+  #     state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+          - "switch.playroom_tl"
+          - "switch.playroom_bl"
+          - "switch.playroom_tr"
+          - "switch.playroom_br"
+          - media_player.playroom_tv
+
+- alias: Driveway Motion
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.driveway_motion
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: 'input_boolean.getting_dark'
+        state: 'on'
+      - condition: state
+        entity_id: 'person.john'
+        state: 'not_home'
+  action:
+    - service: notify.jmg
+      data:
+        title: "Driveway"
+        message: "Motion Alert!"
+        data:
+          channel: Motion Alerts
+          photo:
+            - url: http://192.168.7.1:5110/driveway/person/best.jpg
+              caption: A person was detected.
+          # actions:
+          #   - action: "show_driveway_cam"
+          #     title: "Live Feed"
+
+- alias: Garden Motion
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.back_garden_motion
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: "binary_sensor.patio_door_contact"
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: 'input_boolean.getting_dark'
+          state: 'on'
+        - condition: state
+          entity_id: 'binary_sensor.someone_home'
+          state: 'off'
+  action:
+    - service: notify.jmg
+      data:
+        title: "Garden"
+        message: "Motion Alert!"
+        data:
+          channel: Motion Alerts
+          photo:
+            - url: http://192.168.7.1:5110/garden/person/best.jpg
+              caption: A person was detected.
+
+- id: '1588972630675'
+  alias: Auto TV Off
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.lounge_pir
+    for: 1 hour
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: media_player.samsung_tv
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: media_player.samsung_tv
+    service: media_player.turn_off

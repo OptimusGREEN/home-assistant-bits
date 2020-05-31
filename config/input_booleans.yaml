@@ -1,0 +1,120 @@
+
+bedtime_switch:
+  name: Bedtime Switch
+  # initial: off
+  icon: mdi:car
+someone_home:
+  name: Someone Home?
+  # initial: off
+getting_dark:
+  name: Getting Dark
+restart_homeassistant:
+ name: Restart Home Assistant
+ initial: off
+debug_logging:
+ name: Debug Logging
+#  initial: off
+surround_sound_effect_toggle:
+  name: Surround Effect
+
+holiday_mode:
+  name: Holiday Mode
+
+
+######################################################################
+###################       OVERRIDE - BYPASS        ###################
+######################################################################
+
+enable_front_door_open_notification:
+  name:  Enable Front Door Open Notification
+  icon: mdi:door
+bypass_lounge_pir:
+  name:  Bypass Lounge PIR
+  icon: mdi:motion-sensor
+bypass_loung_lux_sensor:
+  name:  Bypass Lounge Lux Sensor
+  icon: mdi:theme-light-dark
+front_door_lights_auto:
+  name: Auto Lights - Front Door Contact
+  initial: on
+patio_door_lights_auto:
+  name: Auto Lights - Patio Door Contact
+  initial: on
+
+######################################################################
+###################            LIGHTS              ###################
+######################################################################
+
+# xmas_standing_lamp:
+#   name: Xmas Standing Lamp
+# xmas_playroom:
+#   name: Xmas Playroom
+# playroom_chaser_switch:
+#   name:  Playroom Chase
+#   initial: off
+#   icon: mdi:car
+# playroom_rainbow_run_switch:
+#   name:  Rainbow Run
+#   # initial: off
+#   icon: mdi:car
+# livingroom_chaser_switch:
+#   name:  Lounge Chase
+#   # initial: off
+#   icon: mdi:car
+# livingroom_smooth_colour_change_switch:
+#   name: Smooth Change
+#   # initial: off
+#   icon: mdi:car
+
+######################################################################
+###################            HEATING             ###################
+######################################################################
+
+heating_boost:
+  name: Heating Boost
+  icon: mdi:thermostat-box
+
+######################################################################
+###################            RECLINER            ###################
+######################################################################
+
+half_recline:
+  name: Half Recline
+no_recline:
+  name: No Recline
+full_recline:
+  name: Full Recline
+headrest:
+  name: Head Rest
+recliner_nudge_up:
+  name: Recliner Nudge Up
+recliner_nudge_down:
+  name: Recliner Nudge Down
+
+######################################################################
+###################             TESTING            ###################
+######################################################################
+
+# imac_shutdown:
+#   name: iMac Shutdown
+
+######################################################################
+###################             TESTING            ###################
+######################################################################
+
+devtestswitch1:
+  name: "Dev Test 1"
+  initial: off
+  icon: mdi:car
+devtestswitch2:
+  name: "Dev Test 2"
+  initial: off
+  icon: mdi:car
+devtestswitch3:
+  name: "Dev Test 3"
+  initial: off
+  icon: mdi:car
+devtestswitch4:
+  name: "Dev Test 4"
+  initial: off
+  icon: mdi:car

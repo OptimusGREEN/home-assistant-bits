@@ -1,0 +1,13 @@
+- platform: template
+  sensors:
+    robovac_battery_level:
+      friendly_name: "RoboVac Battery Level"
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('vacuum.robovac', 'battery_level') }}"
+      device_class: battery
+    robovac_status:
+      friendly_name: "RoboVac Status"
+      value_template: "{{ state_attr('vacuum.robovac', 'status') }}"
+    robovac_fan_speed:
+      friendly_name: "RoboVac Fan Speed"
+      value_template: "{{ state_attr('vacuum.robovac', 'fan_speed') }}"

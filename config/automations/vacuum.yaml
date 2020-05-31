@@ -1,0 +1,16 @@
+- alias: Alarm Armed Vacuum
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.security_alarm_status
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_armed_vacuum
+      state: 'on'
+  action:
+    service: vacuum.start
+    data:
+      entity_id: vacuum.robovac

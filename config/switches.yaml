@@ -1,0 +1,101 @@
+
+- platform: template
+  switches:
+    dummy_heater_switch_1:
+      value_template: "{{ is_state('input_boolean.dummy_heater_1', 'on') }}"
+      turn_on:
+        service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.dummy_heater_1
+      turn_off:
+        service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.dummy_heater_1
+
+
+- platform: template
+  switches:
+    surround_sound:
+      friendly_name: Surround Sound
+      value_template: "false"
+      turn_on:
+        - service: script.surround_toggle
+      turn_off:
+        - service: script.surround_toggle
+
+- platform: mqtt
+  name: "Hall Light Switch Back"
+  state_topic: "hall_1g_switch/stat/POWER"
+  command_topic: "hall_1g_switch/cmnd/POWER"
+  payload_on: "ON"
+  payload_off: "OFF"
+  state_on: "ON"
+  state_off: "OFF"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "Landing Light Switch Top"
+  state_topic: "landing_switch/stat/POWER"
+  command_topic: "landing_switch/cmnd/POWER"
+  payload_on: "ON"
+  payload_off: "OFF"
+  state_on: "ON"
+  state_off: "OFF"
+  optimistic: false
+  retain: true
+
+
+####### RF Plugs ##########
+
+- platform: mqtt
+  name: "Olivias Lamp"
+  command_topic: RFBridge/cmnd/rfcode
+  availability_topic: "RFBridge/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  payload_on: "#1000002"
+  payload_off: "#1000001"
+  optimistic: true
+
+- platform: mqtt
+  name: "Under Bed Light"
+  state_topic: "RFBridge/tele/RESULT"
+  command_topic: "RFBridge/cmnd/rfcode"
+  # value_template: '{{value_json.RfReceived.Data}}'
+  availability_topic: "RFBridge/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  payload_on: "#1000235"
+  payload_off: "#1000234"
+  optimistic: true
+
+- platform: mqtt
+  name: "Fan Socket"
+  state_topic: "RFBridge/tele/RESULT"
+  command_topic: "RFBridge/cmnd/Backlog"
+  value_template: '{{value_json.RfReceived.Data}}'
+  availability_topic: "RFBridge/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  payload_on: "rfraw AA B0 29 03 08 012C 02B2 1F7C 010101101010011010010101101010100101010110101001011010010110101002 55; rfraw 0"
+  payload_off: "rfraw AA B0 29 03 08 012C 02B2 1F72 010101101010011010010101101010100101010101101001011010011010101002 55; rfraw 0"
+  optimistic: true
+  icon: mdi:fan
+
+- platform: wake_on_lan
+  name: iMac
+  mac: "40:6c:8f:34:25:9e"
+  host: "192.168.0.50"
+  # broadcast_address: "192.168.7.255"
+  turn_off:
+    service: shell_command.imac_sleep
+
+# - platform: mqtt
+#   name: "Playroom RTSP"
+#   state_topic: "camera/playroom/status"
+#   value_template: "{% if value_json[\"RTSP-Server\"] == 'running' %}h264_noseg_start{% else %}rtsp_stop{% endif %}"
+#   command_topic: "camera/playroom/set"
+#   payload_on: "h264_noseg_start"
+#   payload_off: "rtsp_stop"
+#   optimistic: false

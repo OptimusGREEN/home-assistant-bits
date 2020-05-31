@@ -1,0 +1,10 @@
+prefix: "browser_"
+devices:
+  bb6770c0-58191330:
+    name: macbook_chrome
+  a5ec1ac8-a9eac7d2:
+    name: imac_chrome
+  1254cd39-d7800026:
+    name: s8_ha_app
+  abf25241-a387890d:
+    name: s8_chrome

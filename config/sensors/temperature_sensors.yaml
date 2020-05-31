@@ -1,0 +1,33 @@
+- platform: mqtt
+  name: "Target Temperature"
+  state_topic: "home/hall/target_temp"
+  unit_of_measurement: '°C'
+  value_template: "{{ state_attr('climate.thermostat', 'temperature') }}"
+  force_update: true
+  device_class: temperature
+
+- platform: mqtt
+  name: "Current Temperature"
+  state_topic: "home/hall/current_temp"
+  unit_of_measurement: '°C'
+  value_template: "{{ state_attr('climate.thermostat', 'current_temperature') }}"
+  force_update: true
+  device_class: temperature
+
+# - platform: mqtt
+#   name: "Virtual Stat Target Temp"
+#   state_topic: "home/vstat/target_temp"
+#   unit_of_measurement: '°C'
+#   value_template: ""
+#   # value_template: "{{ state_attr('climate.thermostat', 'current_temperature') }}"
+#   force_update: true
+#   device_class: temperature
+
+- platform: mqtt
+  name: "Virtual Stat Current Temp"
+  state_topic: "home/vstat/current_temp"
+  unit_of_measurement: '°C'
+  value_template: ""
+  # value_template: "{{ state_attr('climate.thermostat', 'current_temperature') }}"
+  force_update: true
+  device_class: temperature

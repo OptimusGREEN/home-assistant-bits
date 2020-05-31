@@ -1,0 +1,46 @@
+- platform: rest
+  name: Frigate Debug
+  resource: http://localhost:5110/debug/stats
+  scan_interval: 5
+  json_attributes:
+    - playroom
+    - garden
+    - driveway
+    - coral
+  value_template: 'OK'  
+- platform: template
+  sensors:
+    playroom_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["playroom"]["fps"] }}'
+      unit_of_measurement: 'FPS'
+    playroom_skipped_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["playroom"]["skipped_fps"] }}'
+      unit_of_measurement: 'FPS'
+    playroom_detection_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["playroom"]["detection_fps"] }}'
+      unit_of_measurement: 'FPS'
+    driveway_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["fps"] }}'
+      unit_of_measurement: 'FPS'
+    driveway_skipped_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["skipped_fps"] }}'
+      unit_of_measurement: 'FPS'
+    driveway_detection_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["detection_fps"] }}'
+      unit_of_measurement: 'FPS'
+    garden_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["garden"]["fps"] }}'
+      unit_of_measurement: 'FPS'
+    garden_skipped_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["garden"]["skipped_fps"] }}'
+      unit_of_measurement: 'FPS'
+    garden_detection_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["garden"]["detection_fps"] }}'
+      unit_of_measurement: 'FPS'
+    coral_fps: 
+      value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
+      unit_of_measurement: 'FPS'
+    coral_inference:
+      value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["inference_speed"] }}' 
+      unit_of_measurement: 'ms'
+

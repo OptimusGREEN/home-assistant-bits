@@ -1,0 +1,270 @@
+# - platform: mqtt
+#   name: "Lounge PIR"
+#   payload_on: "ON"
+#   payload_off: "OFF"
+#   device_class: motion
+#   state_topic: "lounge_multi_sensor/stat/POWER"
+
+- platform: mqtt
+  name: "Tecknet Door Bell"
+  state_topic: "RFBridge/tele/RESULT"
+  value_template: '{{value_json.RfReceived.Data}}'
+  availability_topic: "RFBridge/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  # payload_on: "rfraw AA B0 21 03 08 00BE 0244 1770 28181908190818190819081909081909090908190818190908 55; rfraw 0"
+  payload_on: "295BD3"
+  off_delay: 2
+
+- name: Back Garden Motion
+  platform: mqtt
+  state_topic: "frigate/garden/person"
+  device_class: motion
+  availability_topic: "frigate/available"
+  # off_delay: 120
+
+- name: Driveway Motion
+  platform: mqtt
+  state_topic: "frigate/driveway/person"
+  device_class: motion
+  availability_topic: "frigate/available"
+  # off_delay: 120
+
+- name: Playroom Motion
+  platform: mqtt
+  state_topic: "frigate/playroom/person"
+  device_class: motion
+  availability_topic: "frigate/available"
+  # off_delay: 120
+
+- platform: mqtt
+  name: "Playroom PIR"
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: motion
+  state_topic: "atmos_playroom/stat/POWER"
+  availability_topic: "atmos_playroom/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+- platform: ping
+  name: iMac
+  host: 192.168.0.50
+  scan_interval: 30
+
+- platform: ping
+  name: MacBook
+  host: 192.168.0.51
+  scan_interval: 30
+
+- platform: mqtt
+  name: "Someone Home"
+  payload_on: "on"
+  payload_off: "off"
+  device_class: presence
+  state_topic: "someone_home/state"
+
+- platform: template
+  sensors:
+    playroom_occupancy:
+      friendly_name: "Playroom Occupancy"
+      device_class: occupancy
+      value_template: >-
+        {{ is_state('binary_sensor.playroom_pir', 'on')
+            or is_state('binary_sensor.playroom_motion', 'on') }}
+
+- platform: mqtt
+  name: "Smoke Alarm"
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: smoke
+  state_topic: "smoke_alarm/state"
+  availability_topic: "smoke_alarm_monitor/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+- platform: mqtt
+  name: "Security Alarm Status"
+  payload_on: "ON" # Standard
+  payload_off: "OFF" # Standard
+  # device_class: lock
+  # payload_on: "OFF" # Reversed for lock device class
+  # payload_off: "ON" # Reversed for lock device class
+  state_topic: "security_alarm/armed"
+  availability_topic: "security_alarm/set/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+- platform: mqtt
+  name: "Security Alarm Alert"
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: safety
+  state_topic: "security_alarm/alert"
+  availability_topic: "security_alarm/trigger/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+- platform: mqtt
+  state_topic: "hammerspoon/imac/power"
+  name: iMac - Power
+  payload_on: 'on'
+  payload_off: 'off'
+  force_update: true
+
+- platform: mqtt
+  state_topic: "hammerspoon/imac/screens"
+  name: iMac - Screen
+  payload_on: 'on'
+  payload_off: 'off'
+  force_update: true
+
+- platform: mqtt
+  state_topic: "hammerspoon/imac/active"
+  name: iMac - Active
+  payload_on: 'on'
+  payload_off: 'off'
+  force_update: true
+
+# - platform: mqtt
+#   state_topic: "hammerspoon/imac/screensaver"
+#   name: fanboy_screensaver
+#   payload_on: 'on'
+#   payload_off: 'off'
+#   force_update: true
+
+- platform: mqtt
+  state_topic: "hammerspoon/macbook/power"
+  name: Macbook - Power
+  payload_on: 'on'
+  payload_off: 'off'
+  force_update: true
+
+- platform: mqtt
+  state_topic: "hammerspoon/macbook/screens"
+  name: Macbook - Screen
+  payload_on: 'on'
+  payload_off: 'off'
+  force_update: true
+
+- platform: mqtt
+  state_topic: "hammerspoon/macbook/active"
+  name: Macbook - Active
+  payload_on: 'on'
+  payload_off: 'off'
+  force_update: true
+
+# - platform: mqtt
+#   state_topic: "hammerspoon/macbook/screensaver"
+#   name: Macbook - Screensaver
+#   payload_on: 'on'
+#   payload_off: 'off'
+#   force_update: true
+
+###### OptiSERVE #######
+
+- platform: mqtt
+  name: "OptiSERVE_1TB_1 State"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/mount/OptiSERVE_1TB_1"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+- platform: mqtt
+  name: "OptiSERVE_1TB_2 State"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/mount/OptiSERVE_1TB_2"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+- platform: mqtt
+  name: "OptiSERVE_Server State"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/mount/OptiSERVE_Server"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+- platform: mqtt
+  name: "OptiSERVE_Backup State"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/mount/OptiSERVE_Backup"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+###### iMac #######
+
+- platform: mqtt
+  name: "iMac SSD"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/mount/Macintosh SSD"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+- platform: mqtt
+  name: "iMac Storage"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/mount/Storage HDD"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+  off_delay: 120
+
+- platform: mqtt
+  name: "iMac My Book"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/mount/My Book"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+  off_delay: 120
+
+- platform: mqtt
+  name: "iMac PS4 HDD"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/mount/PS4"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+  off_delay: 120
+
+- platform: mqtt
+  name: "iMac USB TimeMachine"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/mount/USB TimeMachine"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+  off_delay: 120
+
+- platform: mqtt
+  name: "iMac FW TimeMachine"
+  availability_topic: "Apple/iMac/system2mqtt/LWT"
+  state_topic: "Apple/iMac/disks/mount/FW TimeMachine"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+  off_delay: 120
+
+###### MacBook #######
+
+- platform: mqtt
+  name: "MacBook SSD"
+  availability_topic: "Apple/MacBook/system2mqtt/LWT"
+  state_topic: "Apple/MacBook/disks/mount/MacBook SSD"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+- platform: mqtt
+  name: "MacBook TimeMachine"
+  availability_topic: "Apple/MacBook/system2mqtt/LWT"
+  state_topic: "Apple/MacBook/disks/mount/MacBook TimeMachine"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+  off_delay: 120

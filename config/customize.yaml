@@ -1,0 +1,140 @@
+switch.tv_back_light:
+  icon: mdi:monitor
+climate.thermostat:
+  friendly_name: Physical Thermostat
+  icon: mdi:thermometer
+  target_temp_step: 0.5
+scene.downstairs_lights_warm:
+  icon: mdi:lightbulb-on-outline
+scene.tv_time:
+  icon: mdi:television-box
+switch.kettle:
+  icon: mdi:kettle
+light.hall_front:
+  friendly_name: Front Hall Light
+light.hall_back:
+  friendly_name: Back Hall Light
+group.play_room_sofa:
+  icon: mdi:sofa
+group.play_room_tv:
+  icon: mdi:television
+group.play_room_centre:
+  icon: mdi:format-align-middle
+light.playroom_sofa1:
+  friendly_name: Play Room Sofa Light 1
+light.playroom_sofa2:
+  friendly_name: Play Room Sofa Light 2
+light.playroom_centre1:
+  friendly_name: Play Room Centre Light 1
+light.playroom_centre2:
+  friendly_name: Play Room Centre Light 2
+light.playroom_tv1:
+  friendly_name: Play Room TV Light 1
+light.playroom_tv2:
+  friendly_name: Play Room TV Light 2
+switch.radiator_light:
+  icon: mdi:radiator
+person.john:
+  entity_picture: /local/images/people/john_home.jpg
+person.emma:
+  entity_picture: /local/images/people/emma_home.png
+climate.hall_stat:
+  friendly_name: Thermostat
+  icon: mdi:thermometer
+  target_temp_step: '0.5'
+  current_temp_step: '0.5'
+sensor.archer_vr900_bytes_received:
+  hidden: true
+sensor.archer_vr900_bytes_sent:
+  hidden: true
+sensor.archer_vr900_kbyte_sec_received:
+  hidden: true
+sensor.archer_vr900_kbyte_sec_sent:
+  hidden: true
+sensor.archer_vr900_packets_received:
+  hidden: true
+sensor.archer_vr900_packets_sent:
+  hidden: true
+sensor.archer_vr900_packets_sec_received:
+  hidden: true
+sensor.archer_vr900_packets_sec_sent:
+  hidden: true
+switch.television:
+  friendly_name: Surround Sound
+  icon: mdi:power
+  assumed_state: true
+binary_sensor.front_door_contact:
+  friendly_name: Front Door
+  icon: mdi:door
+binary_sensor.patio_door_contact:
+  friendly_name: Patio Door
+  icon: mdi:door
+binary_sensor.shoe_cupboard_door_contact:
+  friendly_name: Shoe Cupboard Door
+  icon: mdi:door
+switch.living_room_ceiling_light_tuya:
+  hidden: true
+switch.main_lights_lr_switch_tuya:
+  hidden: true
+switch.living_room_unit_lights_tuya:
+  hidden: true
+sensor.bens_hum_raw: {}
+sensor.bens_temp_raw:
+  hidden: true
+sensor.bedroom_temp_raw:
+  hidden: true
+sensor.bens_temp:
+  icon: mdi:thermometer
+sensor.bedroom_temp:
+  icon: mdi:thermometer
+sensor.olivias_temp:
+  icon: mdi:thermometer
+sensor.olivias_temp_raw:
+  hidden: true
+sensor.average_room_temp:
+  max_temp: '40'
+  min_temp: '5'
+  device_class: temperature
+  unit_of_measurement: °C
+  icon: mdi:thermometer
+switch.front_outside_light_switch:
+  initial_state: false
+switch.olivia_lamp:
+  assumed_state: false
+  icon: mdi:lamp
+light.dining_room_lamp_1:
+  icon: mdi:lamp
+light.dining_room_lamp_2:
+  icon: mdi:lamp
+light.standing_lamp:
+  icon: mdi:lamp
+light.living_room_lamp_1:
+  icon: mdi:lamp
+light.living_room_lamp_3:
+  icon: mdi:lamp
+light.living_room_lamp_2:
+  icon: mdi:lamp
+light.bedroom_lamp_1:
+  icon: mdi:lamp
+light.bedroom_lamp_2:
+  icon: mdi:lamp
+switch.wc_switch:
+  icon: mdi:light-switch
+switch.kitchen_light_switch:
+  icon: mdi:light-switch
+switch.olivias_lamp:
+  assumed_state: false
+switch.christmas_tree:
+  icon: mdi:power-socket
+group.christmas_lights:
+  icon: mdi:power-socket
+switch.outside_christmas_decorations:
+  icon: mdi:power-socket
+switch.outside_christmas_lights:
+  icon: mdi:power-socket
+switch.hall_light_switch_front:
+  icon: mdi:light-switch
+switch.under_bed_light: {}
+binary_sensor.lounge_pir:
+  device_class: motion
+  friendly_name: Lounge PIR

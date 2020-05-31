@@ -1,0 +1,158 @@
+- name: Playroom Disco
+  entities:
+    group.play_room_lights:
+      brightness: 255
+      effect: 4
+      state: on
+
+- name: Cycle Playroom
+  entities:
+    light.playroom_centre1:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_centre2:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_tv1:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_tv2:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_sofa1:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_sofa2:
+      state: on
+      brightness: 255
+      effect: 2
+
+- name: Coloured Playroom
+  entities:
+    light.playroom_centre1:
+      state: on
+      brightness: 255
+      rgb_color: [255,0,0]
+      effect: 0
+    light.playroom_centre2:
+      state: on
+      brightness: 255
+      rgb_color: [255,214,0]
+      effect: 0
+    light.playroom_tv1:
+      state: on
+      brightness: 255
+      rgb_color: [0,255,255]
+      effect: 0
+    light.playroom_tv2:
+      state: on
+      brightness: 255
+      rgb_color: [0,255,0]
+      effect: 0
+    light.playroom_sofa1:
+      state: on
+      brightness: 255
+      rgb_color: [0,0,255]
+      effect: 0
+    light.playroom_sofa2:
+      state: on
+      brightness: 255
+      rgb_color: [255,0,190]
+      effect: 0
+
+- name: White Playroom
+  entities:
+   group.play_room_lights:
+      state: on
+      brightness: 255
+      rgb_color: [255,255,255]
+      effect: 0
+
+- name: Dimmed White Playroom
+  entities:
+    group.play_room_lights:
+      state: on
+      brightness: 200
+      rgb_color: [255,255,255]
+      effect: 0
+
+- name: Celtic Playroom
+  entities:
+    group.play_room_sofa:
+      state: on
+      brightness: 255
+      rgb_color: [0,255,0]
+      effect: 0
+    group.play_room_centre:
+      state: on
+      brightness: 125
+      rgb_color: [255,255,255]
+      effect: 0
+    group.play_room_tv:
+      state: on
+      brightness: 125
+      rgb_color: [255,214,0]
+      effect: 0
+
+- name: Lit Couch Playroom
+  entities:
+    light.playroom_centre1:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_centre2:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_tv1:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_tv2:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_sofa1:
+      state: on
+      brightness: 255
+      rgb_color: [255,255,255]
+      effect: 0
+    light.playroom_sofa2:
+      state: on
+      brightness: 255
+      rgb_color: [255,255,255]
+      effect: 0
+
+- name: TV Disco Playroom
+  entities:
+    light.playroom_centre1:
+      state: on
+      brightness: 255
+      effect: 2
+    light.playroom_centre2:
+      state: on
+      brightness: 255
+      effect: 3
+    light.playroom_tv1:
+      state: on
+      brightness: 255
+      effect: 4
+    light.playroom_tv2:
+      state: on
+      brightness: 255
+      effect: 4
+    light.playroom_sofa1:
+      state: on
+      brightness: 200
+      rgb_color: [255,255,255]
+      effect: 0
+    light.playroom_sofa2:
+      state: on
+      brightness: 200
+      rgb_color: [255,255,255]
+      effect: 0

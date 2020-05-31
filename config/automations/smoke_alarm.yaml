@@ -1,0 +1,33 @@
+- id: '1584132799291'
+  alias: Test Smoke Alarms Reminder
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.smoke_alarm
+    for: 30 days
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: Smoke alarms have not been tested for 30 days
+      title: Smoke Alarm
+    service: notify.jmg
+
+- alias: Smoke Alarm Triggered
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smoke_alarm
+    to: 'on'
+    for: 15 seconds
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.all_downstairs_lights
+          - switch.landing_light_switch_top
+    - service: notify.jmg
+      data:
+        message: Smoke Alarm Alert
+        title: Smoke Alarm
+        data:
+          channel: Alarm Alert

@@ -1,0 +1,170 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 55.8858671
+  longitude: -3.6402088
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 146
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/London
+  # Customization file
+  customize: !include customize.yaml
+  auth_providers:
+    - type: homeassistant
+  whitelist_external_dirs:
+    - "/config/tmp"
+
+local_ip:
+ssdp:
+
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+logger:
+  default: info
+  # logs:
+  #   custom_components.tuya: debug
+  #   custom_components.samsungtv: debug
+  #   custom_components.samsungctl: debug
+  #   homeassistant.component.androidtv: debug
+
+sun:
+
+# Example configuration.yaml entry for the Telegram Bot
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_allowed_id_john
+
+notify:
+  - name: android
+    platform: fcm-android
+  - name: john_telegram
+    platform: telegram
+    chat_id: !secret telegram_allowed_id_john
+  - name: jmg
+    platform: group
+    services:
+      - service: mobile_app_johns8
+      # - service: john_telegram
+
+
+
+recorder:
+  # db_url: !secret mysqldb_url
+  db_url: !secret mariadb_core_url
+  # purge_interval: 1
+  purge_keep_days: 7
+  # include:
+  #   entities:
+  #     - sun.sun
+  #     - sensor.sunlight_pct
+  exclude:
+    entities:
+      - camera.back_garden
+      - camera.front_garden
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  base_url: !secret ddns_url
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Discover some devices automatically
+discovery:
+
+wake_on_lan:
+
+
+remote:
+  - platform: harmony
+    name: Harmony Hub
+    host: !secret harmony_ip
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+zone: !include zones.yaml
+light: !include_dir_merge_list lights/
+sensor: !include_dir_merge_list sensors/
+binary_sensor: !include binary_sensors.yaml
+timer: !include timers.yaml
+group: !include groups.yaml
+automation: !include_dir_merge_list automations/
+script: !include scripts.yaml
+# cover: !include cover.yaml
+scene: !include_dir_merge_list scenes/
+# tuya: !include tuya.yaml
+input_boolean: !include input_booleans.yaml
+input_select: !include input_select.yaml
+switch: !include switches.yaml
+media_player: !include media_players.yaml
+device_tracker: !include trackers.yaml
+weather: !include weather.yaml
+camera: !include cameras.yaml
+climate: !include climate.yaml
+shell_command: !include shell_commands.yaml
+browser_mod: !include browser_mod.yaml
+
+hacs:
+  token: !secret hacs_token
+
+ifttt:
+  key: !secret ifttt_key
+
+stream:
+ffmpeg:
+python_script:
+
+# mqtt:
+#   broker: 192.168.7.1
+#   port: 1883
+#   username: "john"
+#   password: "Hummer01"
+  # username: !secret mqtt_user
+  # password: !secret mqtt_pass
+#   client_id: HomeAssistant
+
+# influxdb:
+#   host: a0d7b954-influxdb
+#   port: 8086
+#   database: homeassistant
+#   username: !secret master_homeassistant_user
+#   password: !secret master_home_assistant_pass
+#   max_retries: 3
+#   default_measurement: state
+
+input_text:
+  clear_mqtt_topic:
+    name: MQTT Topic to Clear
+    mode: text
+    initial: ''
+
+
+# iFrame Configurator, Terminal, Tasmoadmin & MDI Icon Files
+panel_iframe:
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:baby-face
+    url: !secret tasmoadmin_url
+  mdi_icons:
+    title: Icons
+    icon: mdi:material-design
+    url: https://cdn.materialdesignicons.com/5.0.45/
+
+eufy_vacuum:
+  devices:
+  - name: Robovac
+    address: !secret robovac_ip
+    access_token: !secret robovac_key
+    id: !secret robovac_id
+    type: T2118

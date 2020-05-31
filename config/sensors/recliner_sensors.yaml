@@ -1,0 +1,4 @@
+- platform: mqtt
+  name: "Recliner Position"
+  state_topic: "recliner/lounge/position"
+  unit_of_measurement: '%'

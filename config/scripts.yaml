@@ -1,0 +1,79 @@
+surround_toggle:
+  alias: "Surround Toggle"
+  sequence:
+    - service: remote.send_command
+      data:
+        device: "Logitech Amp"
+        command: "PowerToggle"
+
+mac_sleep:
+  alias: Mac Sleep
+  sequence:
+    - service: shell_command.imac_sleep
+
+mac_reboot:
+  alias: Mac Reboot
+  sequence:
+    - service: shell_command.imac_reboot
+
+mac_shutdown:
+  alias: Mac Shutdown
+  sequence:
+    - service: shell_command.imac_shutdown
+
+# 'tuya_update':
+#   alias: Tuya Update
+#   sequence:
+#   - data: {}
+#     service: tuya.force_update
+#   - delay: 00:00:01
+#   - service: script.tuya_loop
+# 'tuya_loop':
+#   alias: Update Loop
+#   sequence:
+#   - data: {}
+#     service: tuya.force_update
+#   - delay: 00:00:01
+#   - service: script.tuya_update
+
+intruder_alert_loop:
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id:
+          - media_player.living_room_speaker
+          - media_player.dining_room_speaker
+          - media_player.kitchen_speaker
+          - media_player.playroom_speaker
+        volume_level: '0.80'
+    - service: media_player.volume_set
+      data:
+        entity_id:
+          - media_player.bedroom_speaker
+        volume_level: '0.50'
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.alarm_speakers
+        media_content_id: !secret media_siren
+        media_content_type: 'audio/mp3'
+    - delay:
+        seconds: 40
+    - service: script.turn_on
+      data:
+        entity_id: script.intruder_alert_loop
+
+school_bell:
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id:
+          - media_player.downstairs_speakers
+          - media_player.olivia_speaker
+        volume_level: '0.70'
+    - service: media_player.play_media
+      data:
+        entity_id:
+          - media_player.downstairs_speakers
+          - media_player.olivia_speaker
+        media_content_id: !secret media_school_bell
+        media_content_type: music

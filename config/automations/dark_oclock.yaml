@@ -1,0 +1,34 @@
+- id: aaaf919daaf3497cb6929f46b02f1c00
+  alias: Dark O'Clock On
+  trigger:
+    - platform: numeric_state
+      below: 8
+      entity_id: sensor.sunlight_pct
+      for:
+        minutes: 5
+    - platform: numeric_state
+      below: 13
+      entity_id: sensor.lounge_lux
+      for:
+        minutes: 5
+  action:
+    service: homeassistant.turn_on
+    data:
+      entity_id: input_boolean.getting_dark
+- id: 6d644d0e07d14c9fb114460297a84503
+  alias: Dark O'Clock Off
+  trigger:
+    - platform: numeric_state
+      above: 12
+      entity_id: sensor.sunlight_pct
+      for:
+        minutes: 5
+    - platform: numeric_state
+      above: 15
+      entity_id: sensor.lounge_lux
+      for:
+        minutes: 5
+  action:
+    service: homeassistant.turn_off
+    data:
+      entity_id: input_boolean.getting_dark

@@ -1,0 +1,223 @@
+########### Playroom Lights #############
+
+########### Playroom Sofa Lights #############
+
+-  platform: mqtt
+   name: "playroom_sofa1"
+   # brightness: true
+   # rgb: true
+   # effect: true
+   availability_topic: "playroom_s1/tele/LWT"
+   command_topic: "playroom_s1/cmnd/POWER1"
+   state_topic: "playroom_s1/stat/RESULT"
+   state_value_template: "{{value_json.POWER}}"
+   brightness_command_topic: "playroom_s1/cmnd/Dimmer"
+   brightness_state_topic: "playroom_s1/stat/RESULT"
+   brightness_value_template: "{{value_json.Dimmer}}"
+   brightness_scale: 100
+   rgb_command_topic: "playroom_s1/cmnd/Color"
+   rgb_state_topic: "playroom_s1/stat/RESULT"
+   # RGB<->RGBW conversion
+   rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+   rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+   payload_on: "ON"
+   payload_off: "OFF"
+   payload_available: "Online"
+   payload_not_available: "Offline"
+   qos: 1
+   effect_command_topic: "playroom_s1/cmnd/Scheme"
+   effect_state_topic: "playroom_s1/stat/RESULT"
+   effect_value_template: "{{value_json.Scheme}}"
+   effect_list:
+   - 0
+   - 1
+   - 2
+   - 3
+   - 4
+   # - "colorfade_slow"
+   # - "colorfade_fast"
+   # - "flash"
+
+-  platform: mqtt
+   name: "playroom_sofa2"
+   # brightness: true
+   # rgb: true
+   # effect: true
+   availability_topic: "playroom_s2/tele/LWT"
+   command_topic: "playroom_s2/cmnd/POWER1"
+   state_topic: "playroom_s2/stat/RESULT"
+   state_value_template: "{{value_json.POWER}}"
+   brightness_command_topic: "playroom_s2/cmnd/Dimmer"
+   brightness_state_topic: "playroom_s2/stat/RESULT"
+   brightness_value_template: "{{value_json.Dimmer}}"
+   brightness_scale: 100
+   rgb_command_topic: "playroom_s2/cmnd/Color"
+   rgb_state_topic: "playroom_s2/stat/RESULT"
+   # RGB<->RGBW conversion
+   rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+   rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+   payload_on: "ON"
+   payload_off: "OFF"
+   payload_available: "Online"
+   payload_not_available: "Offline"
+   qos: 1
+   effect_command_topic: "playroom_s2/cmnd/Scheme"
+   effect_state_topic: "playroom_s2/stat/RESULT"
+   effect_value_template: "{{value_json.Scheme}}"
+   effect_list:
+   - 0
+   - 1
+   - 2
+   - 3
+   - 4
+   # - "colorfade_slow"
+   # - "colorfade_fast"
+   # - "flash"
+
+########### Playroom Centre Lights #############
+
+-  platform: mqtt
+   name: "playroom_centre1"
+   # brightness: true
+   # rgb: true
+   # effect: true
+   availability_topic: "playroom_c1/tele/LWT"
+   command_topic: "playroom_c1/cmnd/POWER1"
+   state_topic: "playroom_c1/stat/RESULT"
+   state_value_template: "{{value_json.POWER}}"
+   brightness_command_topic: "playroom_c1/cmnd/Dimmer"
+   brightness_state_topic: "playroom_c1/stat/RESULT"
+   brightness_value_template: "{{value_json.Dimmer}}"
+   brightness_scale: 100
+   rgb_command_topic: "playroom_c1/cmnd/Color"
+   rgb_state_topic: "playroom_c1/stat/RESULT"
+   # RGB<->RGBW conversion
+   rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+   rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+   payload_on: "ON"
+   payload_off: "OFF"
+   payload_available: "Online"
+   payload_not_available: "Offline"
+   qos: 1
+   effect_command_topic: "playroom_c1/cmnd/Scheme"
+   effect_state_topic: "playroom_c1/stat/RESULT"
+   effect_value_template: "{{value_json.Scheme}}"
+   effect_list:
+   - 0
+   - 1
+   - 2
+   - 3
+   - 4
+   # - "colorfade_slow"
+   # - "colorfade_fast"
+   # - "flash"
+
+-  platform: mqtt
+   name: "playroom_centre2"
+   # brightness: true
+   # rgb: true
+   # effect: true
+   availability_topic: "playroom_c2/tele/LWT"
+   command_topic: "playroom_c2/cmnd/POWER1"
+   state_topic: "playroom_c2/stat/RESULT"
+   state_value_template: "{{value_json.POWER}}"
+   brightness_command_topic: "playroom_c2/cmnd/Dimmer"
+   brightness_state_topic: "playroom_c2/stat/RESULT"
+   brightness_value_template: "{{value_json.Dimmer}}"
+   brightness_scale: 100
+   rgb_command_topic: "playroom_c2/cmnd/Color"
+   rgb_state_topic: "playroom_c2/stat/RESULT"
+   # RGB<->RGBW conversion
+   rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+   rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+   payload_on: "ON"
+   payload_off: "OFF"
+   payload_available: "Online"
+   payload_not_available: "Offline"
+   qos: 1
+   effect_command_topic: "playroom_c2/cmnd/Scheme"
+   effect_state_topic: "playroom_c2/stat/RESULT"
+   effect_value_template: "{{value_json.Scheme}}"
+   effect_list:
+   - 0
+   - 1
+   - 2
+   - 3
+   - 4
+   # - "colorfade_slow"
+   # - "colorfade_fast"
+   # - "flash"
+
+########### Playroom TV Lights #############
+
+-  platform: mqtt
+   name: "playroom_tv1"
+   # brightness: true
+   # rgb: true
+   # effect: true
+   availability_topic: "playroom_t1/tele/LWT"
+   command_topic: "playroom_t1/cmnd/POWER1"
+   state_topic: "playroom_t1/stat/RESULT"
+   state_value_template: "{{value_json.POWER}}"
+   brightness_command_topic: "playroom_t1/cmnd/Dimmer"
+   brightness_state_topic: "playroom_t1/stat/RESULT"
+   brightness_value_template: "{{value_json.Dimmer}}"
+   brightness_scale: 100
+   rgb_command_topic: "playroom_t1/cmnd/Color"
+   rgb_state_topic: "playroom_t1/stat/RESULT"
+   # RGB<->RGBW conversion
+   rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+   rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+   payload_on: "ON"
+   payload_off: "OFF"
+   payload_available: "Online"
+   payload_not_available: "Offline"
+   qos: 1
+   effect_command_topic: "playroom_t1/cmnd/Scheme"
+   effect_state_topic: "playroom_t1/stat/RESULT"
+   effect_value_template: "{{value_json.Scheme}}"
+   effect_list:
+   - 0
+   - 1
+   - 2
+   - 3
+   - 4
+   # - "colorfade_slow"
+   # - "colorfade_fast"
+   # - "flash"
+
+-  platform: mqtt
+   name: "playroom_tv2"
+   # brightness: true
+   # rgb: true
+   # effect: true
+   availability_topic: "playroom_t2/tele/LWT"
+   command_topic: "playroom_t2/cmnd/POWER1"
+   state_topic: "playroom_t2/stat/RESULT"
+   state_value_template: "{{value_json.POWER}}"
+   brightness_command_topic: "playroom_t2/cmnd/Dimmer"
+   brightness_state_topic: "playroom_t2/stat/RESULT"
+   brightness_value_template: "{{value_json.Dimmer}}"
+   brightness_scale: 100
+   rgb_command_topic: "playroom_t2/cmnd/Color"
+   rgb_state_topic: "playroom_t2/stat/RESULT"
+   # RGB<->RGBW conversion
+   rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+   rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+   payload_on: "ON"
+   payload_off: "OFF"
+   payload_available: "Online"
+   payload_not_available: "Offline"
+   qos: 1
+   effect_command_topic: "playroom_t2/cmnd/Scheme"
+   effect_state_topic: "playroom_t2/stat/RESULT"
+   effect_value_template: "{{value_json.Scheme}}"
+   effect_list:
+   - 0
+   - 1
+   - 2
+   - 3
+   - 4
+   # - "colorfade_slow"
+   # - "colorfade_fast"
+   # - "flash"

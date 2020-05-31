@@ -1,0 +1,59 @@
+- platform: mqtt
+  name: "John Phone Battery"
+  state_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_battery/attributes"
+  unit_of_measurement: '%'
+  value_template: "{{ value_json.state }}"
+  json_attributes_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_battery/attributes"
+
+- platform: mqtt
+  name: "Ariela"
+  state_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_availability/attributes"
+  value_template: "{{ value_json.state }}"
+  json_attributes_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_availability/attributes"
+
+
+# - platform: mqtt
+#   name: "John Heart Rate"
+#   state_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_heart_rate/attributes"
+#   unit_of_measurement: 'bpm'
+#   value_template: "{{ value_json.state }}"
+#   json_attributes_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_heart_rate/attributes"
+
+
+- platform: mqtt
+  name: "John Ariela Bluetooth"
+  state_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_bluetooth/attributes"
+  value_template: "{{ value_json.state }}"
+  json_attributes_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_bluetooth/attributes"
+
+
+# - platform: mqtt
+#   name: "John NOTIFICATION GRABBER"
+#   state_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_notification_grabber/attributes"
+#   value_template: "{{ value_json.state }}"
+#   json_attributes_topic: "homeassistant/sensor/android_optimusgalaxy_ariela_notification_grabber/attributes"
+
+- platform: template
+  sensors:
+    # BATTERY
+    john_phone_battery_level:
+      friendly_name: "John Phone Battery Level"
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('sensor.john_phone_battery', 'state') }}"
+      device_class: battery
+    john_phone_charging_state:
+      friendly_name: "John Phone Charging State"
+      value_template: "{{ state_attr('sensor.john_phone_battery', 'charging_state') }}"
+    john_phone_power_state:
+      friendly_name: "John Phone Power State"
+      value_template: "{{ state_attr('sensor.john_phone_battery', 'power') }}"
+    john_phone_battery_temperature:
+      friendly_name: "John Phone Battery Temperature"
+      value_template: "{{ state_attr('sensor.john_phone_battery', 'temperature') }}"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+    # Bluetooth
+    # john_phone_bt_discovered:
+    #   friendly_name: "John Phone BT Discovered Devices"
+    #   value_template: "{{ state_attr('sensor.john_ariela_bluetooth', 'discovered_devices') }}"
+

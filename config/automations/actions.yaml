@@ -1,0 +1,10 @@
+  - alias: Show Driveway Camera Feed
+    trigger:
+      platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: show_driveway_cam
+    action:
+      service: camera.play_stream
+      data:
+        entity_id: camera.front_garden

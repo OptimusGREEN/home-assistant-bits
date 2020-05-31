@@ -1,0 +1,78 @@
+# - platform: samsungtv
+#   host: !secret tv_ip_lounge
+#   # port: 8001
+#   name: Samsung TV
+#   mac: !secret tv_mac_lounge
+
+- platform: samsungtv_tizen
+  host: !secret tv_ip_lounge
+  port: 8002
+  mac: !secret tv_mac_lounge
+  name: Samsung TV
+  app_list: '{"Netflix": "11101200001", "Prime": "3201512006785", "YouTube": "111299001912"}'
+
+- platform: lg_netcast
+  host: !secret tv_ip_playroom
+  name: Playroom Tv
+  access_token: !secret lg_token
+- platform: androidtv
+  device_class: firetv
+  host: !secret box_ip_firetv
+  name: Fire TV
+  adb_server_ip: 127.0.0.1
+  adb_server_port: 5037
+  adbkey: "/ssl/adb/keys/adbkey"
+  # apps:
+  #     com.amazon.tv.launcher: "Fire TV"
+- platform: androidtv
+  device_class: androidtv
+  host: !secret box_ip_shield
+  name: Nvidia Shield TV
+  adb_server_ip: 127.0.0.1
+  adb_server_port: 5037
+  adbkey: "/ssl/adb/keys/adbkey"
+  # apps:
+  #     com.yoku.marumovie: "Cinema HD"
+  #     com.archos.mediacenter.videofree: "Archos Video"
+  #     com.disney.disneylife_goo: "Disney"
+  
+#############  UNIVERSAL  ###############
+# Example configuration.yaml entry
+- platform: universal
+  name: Lounge TV
+  children:
+    - media_player.samsungtv
+  commands:
+    turn_on:
+      service: remote.send_command
+      data:
+        command: PowerOn
+        device: Samsung TV
+        entity_id: remote.harmony_hub
+    turn_off:
+      service: remote.send_command
+      data:
+        command: PowerOff
+        device: Samsung TV
+        entity_id: remote.harmony_hub
+    volume_up:
+      service: remote.send_command
+      data:
+        command: VolumeUp
+        device: Samsung TV
+        entity_id: remote.harmony_hub
+    volume_down:
+      service: remote.send_command
+      data:
+        command: VolumeDown
+        device: Samsung TV
+        entity_id: remote.harmony_hub
+    volume_mute:
+      service: remote.send_command
+      data:
+        command: Mute
+        device: Samsung TV
+        entity_id: remote.harmony_hub
+  # attributes:
+  #   is_volume_muted: ENTITY_ID|ATTRIBUTE
+  #   state: ENTITY_ID|ATTRIBUTE

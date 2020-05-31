@@ -1,0 +1,104 @@
+---
+global_modules:
+  - globals.modules.strings_lib
+  - globals.modules.timestamp
+  - globals.modules.database
+
+# playroom_rainbow_run:
+#   module: rainbow_run
+#   class: RainbowRun
+#   end_state: "off"
+#   master_switch: group.play_room_lights
+#   switch: input_boolean.playroom_rainbow_run_switch
+#   entities: ["light.playroom_tv1","light.playroom_centre1","light.playroom_sofa1","light.playroom_sofa2","light.playroom_centre2","light.playroom_tv2"]
+
+logme:
+  module: __logme
+  class: LogMe
+
+playroom_switch:
+  module: playroom_switch
+  class: PlayroomSwitch
+
+xmas_standing_lamp:
+  module: xmas_lamp
+  class: XmasLamp
+  time: 60
+  colours: ["green", 'blue', 'red']
+  switch: "input_boolean.xmas_standing_lamp"
+
+xmas_playroom:
+  module: xmas_lamp
+  class: XmasLamp
+  time: 5
+  colours: ["green", 'blue', 'red', "gold"]
+  switch: "input_boolean.xmas_playroom"
+  entities: ["light.playroom_sofa1", "light.playroom_sofa2", "light.playroom_centre1", "light.playroom_centre2", "light.playroom_tv1", "light.playroom_tv2"]
+
+restart_duration:
+  module: reboot_time
+  class: GetRestartTime
+
+heating_boost:
+  module: heating_boost
+  class: HeatingBoost
+
+virtual_stat:
+  module: vstat
+  class: Vstat
+
+average_temp:
+  module: temp_average
+  class: AverageTemperature
+
+away:
+  module: away
+  class: Away
+
+bedtime:
+  module: bedtime 
+  class: Bedtime
+
+recliner:
+  module: cover_control
+  class: CoverControl
+  open_switch: switch.recliner_down
+  close_switch: switch.recliner_up
+  current_position_sensor: sensor.recliner_position
+  mqtt_sensor_topic: "recliner/lounge/position"
+  full_transition_time: 11
+  overrun_time: 2
+  pre_pos_1: [0,input_boolean.no_recline]
+  pre_pos_2: [55,input_boolean.half_recline]
+  pre_pos_3: [100,input_boolean.full_recline]
+  pre_pos_4: [18.1,input_boolean.headrest]
+  nudge: [2,input_boolean.recliner_nudge_down,input_boolean.recliner_nudge_up]
+
+timestamp_test1:
+  module: timestamp_app
+  class: TimestampApp
+  trigger: input_boolean.devtestswitch1
+  trigger_state: "on"
+  timestamp_sensor: sensor.devtest_template1
+
+timestamp_test2:
+  module: timestamp_app
+  class: TimestampApp
+  trigger: input_boolean.devtestswitch2
+  trigger_state: "on"
+  timestamp_sensor: sensor.devtest_template2
+  output_time_format: readable
+
+overwatch:
+  module: optiserve_overwatch
+  class: Overwatch
+
+# devtest:
+#   module: dev
+#   class: DevTesting
+#   global_dependencies:
+#     - globals.modules.timestamp
+#     - globals.modules.database
+#   trigger: "input_boolean.devtestswitch3"
+#   trigger2: "input_boolean.devtestswitch4"
+#   sensor: "sensor.devtest_template2"

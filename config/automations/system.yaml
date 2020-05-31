@@ -1,0 +1,27 @@
+- alias: OptiSERVE Backup Unmounted
+  description: ''
+  trigger:
+    - platform: state
+      entity_id: sensor.optiserve_backup_state
+      to: 'unmounted'
+      for:
+        minutes: 10
+  action:
+    - service: notify.john
+      data:
+        title: "OptiSERVE Alert"
+        message: "Backup disk is not mounted."
+
+- alias: OptiSERVE Share1 Unmounted
+  description: ''
+  trigger:
+    - platform: state
+      entity_id: sensor.optiserve_share1_state
+      to: 'unmounted'
+      for:
+        minutes: 10
+  action:
+    - service: notify.john
+      data:
+        title: "OptiSERVE Alert"
+        message: "Share1 disk is not mounted."
