@@ -3,12 +3,12 @@ from bs4 import BeautifulSoup
 from json import loads
 import re, requests
 import logging, time
-# from libs.magnetic import mglobals
 
-# logging.basicConfig(level=logging.DEBUG,
-#                     format="[%(levelname)s] [%(module)s:%(lineno)d] " + " - %(asctime)s - %(message)s")
 
-# path = mglobals.base_path
+logging.basicConfig(level=logging.DEBUG,
+                    format="[%(levelname)s] [%(module)s:%(lineno)d] " + " - %(asctime)s - %(message)s")
+
+
 
 class Magnetic(object):
     
@@ -19,6 +19,7 @@ class Magnetic(object):
         self.limit = None
         self.max_size = None
         self.get_largest = False
+        self.size_magnet_dict = {}
         self.magnets = []
         self.filters = []
         self.proxies = proxies
@@ -41,8 +42,11 @@ class Magnetic(object):
                 leechers = []
                 sizes = []
                 dates = []
-                size_magnet_dict = {}
                 tor_list = self.__filter_magnet_list(tor_list)
+                logging.debug("##########################\n\n")
+                for t in tor_list:
+                    logging.debug(t)
+                logging.debug("##########################\n\n")
                 self.limit_counter = 0
                 for i in tor_list:
                     if self.limit_counter < self.limit:
@@ -50,12 +54,12 @@ class Magnetic(object):
                         leechers.append(i["leechers"])
                         sizes.append(i["size"])
                         dates.append(i["pubdate"].split(" +")[0])
-                        size_magnet_dict[i["size"]] = i["download"]
+                        self.size_magnet_dict[i["size"]] = i["download"]
                         self.magnets.append(i["download"])
                         self.limit_counter = + 1
                 if self.get_largest:
                     self.magnets = []
-                    largest = self.__filterOnlyLargest(size_magnet_dict)
+                    largest = self.__filterOnlyLargest(self.size_magnet_dict)
                     self.magnets.append(largest)
         except Exception as e:
             logging.warning(e, stack_info=True, exc_info=True)
@@ -102,17 +106,19 @@ class Magnetic(object):
             return tor_list
         new_tor_list = []
         filter_match = False
-        for tor in tor_list:
-            magnet_title = tor["title"]
-            for l in self.filters:
+        for l in self.filters:
+            logging.debug("Filter Match: {}".format(filter_match))
+            if filter_match:
+                l = filter_match
+            if isinstance(l, str):
+                if "," in l:
+                    l = l.split(",")
+                elif " " in l:
+                    l = l.split(" ")
+            logging.debug("Current Filter: {}".format(l))
+            for tor in tor_list:
+                magnet_title = tor["title"]
                 # print(l)
-                if filter_match:
-                    l = filter_match
-                if isinstance(l, str):
-                    if "," in l:
-                        l = l.split(",")
-                    elif " " in l:
-                        l = l.split(" ")
                 if all(x in magnet_title.lower() for x in l):
                     print("* MATCH * Filter: {} is in {}".format(l, magnet_title))
                     new_tor_list.append(tor)
@@ -122,7 +128,7 @@ class Magnetic(object):
                     print("Filter: {} is Not in {}".format(l, magnet_title))
         return new_tor_list
 
-    def magnetyze(self, search_query, sites=None, scrape_limit=None, max_file_size_gb=None, filters=None, only_get_largest=False, retries=4):
+    def magnetyze(self, search_query, sites=None, scrape_limit=None, max_file_size_gb=None, filters=None, only_get_largest=False, get_size_magnet_dict=False, retries=4):
         search_query = search_query.translate({ord(i):None for i in '\'"!@#$'})
         logging.info("Magnetizing [{}], this might take a few minutes...".format(search_query))
         print("Magnetizing [{}], this might take a few minutes...".format(search_query))
@@ -150,24 +156,12 @@ class Magnetic(object):
             scrape()
         if len(self.magnets) > 0:
             self.retries_count = 0
+            if get_size_magnet_dict:
+                return self.size_magnet_dict
             return self.magnets
-        if self.retries_count >= retries:
+        if self.retries_count > retries:
             return
         else:
             self.__rerun(search_query, sites, scrape_limit, max_file_size_gb, filters, only_get_largest)
 
 
-
-# import libs.my_secrets as secret
-# magnetic = Magnetic(proxies=secret.pia_proxies)
-#
-# magnet_query_filters = [["2160", "265"],
-#                         ["2160", "hevc"],
-#                         ["1080", "265"],
-#                         ["1080", "hevc"],
-#                         ["1080"]]
-# mags = magnetic.magnetyze("Manhunt s02e01", scrape_limit=50, sites=['rarbg'], filters=magnet_query_filters, only_get_largest=False)
-# if mags:
-#     print("\n")
-#     for mag in mags:
-#         print(mag)

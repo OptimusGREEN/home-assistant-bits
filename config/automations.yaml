@@ -1,1 +1,715 @@
-
+- alias: Show Driveway Camera Feed
+  id: '15917659586195'
+  trigger:
+    platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: show_driveway_cam
+  action:
+    service: camera.play_stream
+    data:
+      entity_id: camera.front_garden
+      media_player: media_player.plex_john_s8
+- id: aaaf919daaf3497cb6929f46b02f1c00
+  alias: Dark O'Clock On
+  trigger:
+  - below: '10'
+    entity_id: sensor.sunlight_pct
+    for: 0:08:00
+    platform: numeric_state
+  - below: '8'
+    entity_id: sensor.lounge_lux
+    for: 0:05:00
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_boolean.getting_dark
+    service: homeassistant.turn_on
+- id: 6d644d0e07d14c9fb114460297a84503
+  alias: Dark O'Clock Off
+  trigger:
+  - above: '20'
+    entity_id: sensor.sunlight_pct
+    for:
+      minutes: 10
+    platform: numeric_state
+  - above: '16'
+    entity_id: sensor.lounge_lux
+    for:
+      minutes: 10
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_boolean.getting_dark
+    service: homeassistant.turn_off
+- id: 878732982309093gv363364
+  alias: Doorbell Notifications
+  trigger:
+  - entity_id: binary_sensor.tecknet_door_bell
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      data:
+        actions:
+        - action: URI
+          title: Camera
+          uri: /lovelace-basic/cctv
+        channel: Doorbell
+        clickAction: /lovelace-basic/cctv
+        color: green
+        image: http://192.168.7.1:8123/api/camera_proxy/camera.driveway_last_person
+        importance: high
+        priority: high
+        ttl: 0
+      message: There's somebody at the door ha ha!
+      title: Doorbell
+    service: notify.jmg
+- alias: Door Chime
+  id: 878732992309093gv363365
+  trigger:
+    platform: state
+    entity_id: binary_sensor.tecknet_door_bell
+    to: 'on'
+  action:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.downstairs_speakers
+      media_content_id: https://ha.optimusgreen.com/local/sounds/dingdong.mp3
+      media_content_type: music
+- alias: Hassio Restarted Notification
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+  - service: notify.mobile_app_johns8
+    data:
+      title: Home Assistant
+      message: Hassio has been restarted!
+  id: 2fb1b7fc85f64188a6ffcc772670457d
+- id: '1578835915643'
+  alias: timestamp stopped
+  description: ''
+  trigger:
+    platform: state
+    entity_id: input_boolean.restart_homeassistant
+    to: 'on'
+  action:
+    service_template: mqtt.publish
+    data_template:
+      topic: homeassistant/timestamp/stopped
+      payload: '{{ as_timestamp(now()) }}'
+      retain: true
+- id: '1576835965683'
+  alias: timestamp started
+  description: ''
+  trigger:
+    platform: homeassistant
+    event: start
+  condition: []
+  action:
+    service_template: mqtt.publish
+    data_template:
+      topic: homeassistant/timestamp/started
+      payload: '{{ as_timestamp(now()) }}'
+- alias: School Bell
+  id: gw78837300b0nbd0987378
+  description: '"Home School" bells during lockdown'
+  trigger:
+  - platform: time
+    at: 08:50:00
+  - platform: time
+    at: '10:15:00'
+  - platform: time
+    at: '10:30:00'
+  - platform: time
+    at: '12:30:00'
+  - platform: time
+    at: '15:15:00'
+  condition:
+    condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: script.turn_on
+    entity_id: script.school_bell
+- id: '1572895271725'
+  alias: Back Light Motion On
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.back_garden_motion
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 5
+  condition:
+  - condition: state
+    entity_id: input_boolean.getting_dark
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: switch.back_outside_light_switch
+- id: '1572897651725'
+  alias: Back Light Motion Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.back_garden_motion
+    to: 'off'
+    for:
+      minutes: 1
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: switch.back_outside_light_switch
+- alias: Playroom Motion Unoccupied
+  id: '1572897652725'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.playroom_occupancy
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 30
+  action:
+  - service: homeassistant.turn_off
+    entity_id:
+    - switch.playroom_tl
+    - switch.playroom_bl
+    - switch.playroom_tr
+    - switch.playroom_br
+    - media_player.playroom_tv
+- alias: Driveway Motion
+  id: '157289657651725'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.driveway_motion
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_boolean.getting_dark
+      state: 'on'
+    - condition: state
+      entity_id: person.john
+      state: not_home
+  action:
+  - service: notify.jmg
+    data:
+      ttl: 0
+      priority: high
+      title: Driveway
+      message: Motion Alert!
+      data:
+        channel: Motion Alerts
+        photo:
+        - url: http://192.168.7.1:5110/driveway/person/best.jpg
+          caption: A person was detected.
+- alias: Garden Motion
+  id: '1545222897651725'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.back_garden_motion
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.patio_door_contact
+    state: 'off'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_boolean.getting_dark
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.someone_home
+      state: 'off'
+  action:
+  - service: notify.jmg
+    data:
+      ttl: 0
+      priority: high
+      title: Garden
+      message: Motion Alert!
+      data:
+        channel: Motion Alerts
+        photo:
+        - url: http://192.168.7.1:5110/garden/person/best.jpg
+          caption: A person was detected.
+- id: '1588972630675'
+  alias: Auto TV Off
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.lounge_pir
+    for: 1 hour
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: media_player.samsung_tv
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: media_player.samsung_tv
+    service: media_player.turn_off
+- id: '1585950029208'
+  alias: Alarm not set
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.someone_home
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.security_alarm_status
+    state: 'off'
+  action:
+    service: notify.jmg
+    data:
+      message: Alarm has not been armed
+      title: Security Alarm
+      data:
+        channel: Important
+- alias: Intruder Alarm Triggered
+  id: 16585950029208d
+  trigger:
+    platform: state
+    entity_id: binary_sensor.security_alarm_alert
+    to: 'on'
+  action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+      - group.all_downstairs_lights
+      - switch.landing_light_switch_top
+  - service: script.turn_on
+    data:
+      entity_id: script.intruder_alert_loop
+  - service: notify.jmg
+    data:
+      ttl: 0
+      priority: high
+      message: Security Alarm Alert
+      title: Security Alarm
+      data:
+        channel: Alarm Alert
+- alias: Intruder Alarm Reset
+  id: 16585950029208e
+  trigger:
+    platform: state
+    entity_id: binary_sensor.security_alarm_alert
+    to: 'off'
+  action:
+  - service: script.turn_off
+    data:
+      entity_id: script.intruder_alert_loop
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+      - group.all_downstairs_lights
+      - switch.landing_light_switch_top
+  - service: media_player.media_stop
+    data:
+      entity_id:
+      - media_player.downstairs_speakers
+      - media_player.bedroom_speaker
+- id: '1584132799291'
+  alias: Test Smoke Alarms Reminder
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.smoke_alarm
+    for: 30 days
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: Smoke alarms have not been tested for 30 days
+      title: Smoke Alarm
+    service: notify.jmg
+- alias: Smoke Alarm Triggered
+  id: gs738763830bbb0b0yf3
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smoke_alarm
+    to: 'on'
+    for: 15 seconds
+  action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+      - group.all_downstairs_lights
+      - switch.landing_light_switch_top
+  - service: notify.jmg
+    data:
+      ttl: 0
+      priority: high
+      message: Smoke Alarm Alert
+      title: Smoke Alarm
+      data:
+        channel: Alarm Alert
+- alias: OptiSERVE Backup Unmounted
+  id: 1568929003972u228s9022
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.optiserve_backup_state
+    to: unmounted
+    for:
+      minutes: 10
+  action:
+  - service: notify.john
+    data:
+      title: OptiSERVE Alert
+      message: Backup disk is not mounted.
+- alias: OptiSERVE Share1 Unmounted
+  id: 1568929003972u228s9023
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.optiserve_share1_state
+    to: unmounted
+    for:
+      minutes: 10
+  action:
+  - service: notify.john
+    data:
+      title: OptiSERVE Alert
+      message: Share1 disk is not mounted.
+- id: '1571814474765'
+  alias: Morning 20°c
+  description: ''
+  trigger:
+  - at: 05:30
+    platform: time
+  condition:
+  - condition: state
+    entity_id: binary_sensor.someone_home
+    state: 'on'
+  action:
+  - data:
+      temperature: 20
+    service: climate.set_temperature
+    entity_id: climate.virtual_stat
+- alias: Alarm Armed Vacuum
+  id: vac83276783ghvj33h3u
+  trigger:
+    platform: state
+    entity_id: binary_sensor.security_alarm_status
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm_armed_vacuum
+    state: 'on'
+  action:
+    service: vacuum.start
+    data:
+      entity_id: vacuum.robovac
+- alias: Webhook Reciever
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: call_service
+  action:
+    service_template: '{{ trigger.event.data.service }}'
+    data_template:
+      entity_id: '{{ trigger.event.data.entity_id }}'
+  id: 25b2c71f8db5457c9b8a712173a5a898
+- id: '1592085598999'
+  alias: Olivia's Lights 7pm
+  description: ''
+  trigger:
+  - at: '19:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: input_boolean.someone_home
+    state: 'on'
+  action:
+  - data:
+      brightness_pct: 100
+    entity_id: light.olivias_lamp
+    service: light.turn_on
+  - data: {}
+    entity_id: light.wled_olivia_bed_lights
+    service: light.turn_on
+  - data:
+      option: '[PL=02] Preset 2'
+    entity_id: input_select.wled_presets
+    service: input_select.select_option
+- id: '1592087334667'
+  alias: Desktop Charger On
+  description: ''
+  trigger:
+  - below: '20'
+    entity_id: sensor.john_phone_battery_level
+    platform: numeric_state
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.desk_phone_charger
+    service: switch.turn_on
+- id: '1592087580590'
+  alias: Desktop Charger Off
+  description: ''
+  trigger:
+  - above: '49'
+    entity_id: sensor.john_phone_battery_level
+    platform: numeric_state
+  - entity_id: sensor.john_phone_power_state
+    platform: state
+    to: Wireless
+  condition:
+  - after: '21:00'
+    condition: time
+  - condition: state
+    entity_id: sensor.john_phone_power_state
+    state: Wireless
+  - condition: and
+    conditions:
+    - above: '49'
+      condition: numeric_state
+      entity_id: sensor.john_phone_battery_level
+  action:
+  - data: {}
+    entity_id: switch.desk_phone_charger
+    service: switch.turn_off
+- id: '1592148785981'
+  alias: Show Driveway Camera - Lounge
+  description: ''
+  trigger:
+  - entity_id: input_boolean.driveway_camera_lounge
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      media_player: media_player.optimusshield_cast
+    entity_id: camera.front_garden
+    service: camera.play_stream
+  - data: {}
+    entity_id: input_boolean.driveway_camera_lounge
+    service: homeassistant.turn_off
+- id: '1592148785982'
+  alias: Show Garden Camera - Lounge
+  description: ''
+  trigger:
+  - entity_id: input_boolean.garden_camera_lounge
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      media_player: media_player.optimusshield_cast
+    entity_id: camera.back_garden
+    service: camera.play_stream
+  - data: {}
+    entity_id: input_boolean.garden_camera_lounge
+    service: homeassistant.turn_off
+- id: '1592148785983'
+  alias: Show Garden Camera - Playroom
+  description: ''
+  trigger:
+  - entity_id: input_boolean.garden_camera_playroom
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      media_player: media_player.optimuschromecast_tv
+    entity_id: camera.back_garden
+    service: camera.play_stream
+  - data: {}
+    entity_id: input_boolean.garden_camera_playroom
+    service: homeassistant.turn_off
+- id: '1592148785984'
+  alias: Show Driveway Camera - Playroom
+  description: ''
+  trigger:
+  - entity_id: input_boolean.driveway_camera_playroom
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      media_player: media_player.optimuschromecast_tv
+    entity_id: camera.front_garden
+    service: camera.play_stream
+  - data: {}
+    entity_id: input_boolean.driveway_camera_playroom
+    service: homeassistant.turn_off
+- id: '1592148785985'
+  alias: Show Playroom Camera - Lounge
+  description: ''
+  trigger:
+  - entity_id: input_boolean.playroom_camera_lounge
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      media_player: media_player.optimusshield_cast
+    entity_id: camera.playroom
+    service: camera.play_stream
+  - data: {}
+    entity_id: input_boolean.playroom_camera_lounge
+    service: homeassistant.turn_off
+- id: '1592345723423'
+  alias: Sync Gmusic at Startup
+  description: ''
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data: {}
+    service: script.gmusic_sync_media
+- id: wled_speed
+  alias: wled_speed
+  trigger:
+  - entity_id: input_number.ledspeed
+    platform: state
+  condition: []
+  action:
+  - data_template:
+      topic: wled/all/api
+      payload: SX={{ states('input_number.ledspeed') | int }}
+    service: mqtt.publish
+- id: wled_intensity
+  alias: wled_intensity
+  trigger:
+  - entity_id: input_number.ledintensity
+    platform: state
+  condition: []
+  action:
+  - data_template:
+      topic: wled/all/api
+      payload: IX={{ states('input_number.ledintensity') | int }}
+    service: mqtt.publish
+- id: wled_palette
+  alias: WLED Palette
+  trigger:
+  - platform: state
+    entity_id: input_select.wled_palette_list
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: wled/all/api
+      payload: '{{ states(''input_select.wled_palette_list'') }}'
+- id: wled_presets
+  alias: WLED Presets
+  trigger:
+  - platform: state
+    entity_id: input_select.wled_presets
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: wled/all/api
+      payload: '{{ states(''input_select.wled_presets'') }}'
+- id: '1592643178173'
+  alias: Olivia Lights Off 8am
+  description: ''
+  trigger:
+  - at: 08:00
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.wled_olivia_bed_lights, light.olivias_lamp
+    service: light.turn_off
+- id: '1594021493035'
+  alias: Notify Unavailable Arduino
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.security_alarm_alert
+    for: 1 hour
+    platform: state
+    to: Unavailable
+  - entity_id: sensor.house_sockets
+    for: 1 hour
+    platform: state
+    to: Unavailable
+  condition: []
+  action:
+  - data:
+      message: Arduino has become unavailable and should be checked.
+      priority: high
+      title: Arduino Unavailable
+      ttl: 0
+    service: notify.jmg
+- id: '1594049724000'
+  alias: Restart Frigate
+  description: ''
+  trigger:
+  - entity_id: sensor.coral_inference
+    for: 0:05:00
+    platform: state
+    to: Unavailable
+  condition: []
+  action:
+  - data:
+      payload: 1
+      topic: OptiSERVE/system2mqtt/callbacks/restart_frigate
+    service: mqtt.publish
+- id: '1594554985043'
+  alias: Fan Auto On
+  description: ''
+  trigger:
+  - above: '21'
+    entity_id: sensor.ben_temperature
+    for: 00:10:00
+    platform: numeric_state
+  condition:
+  - after: '17:00'
+    before: 03:00
+    condition: time
+  - condition: or
+    conditions:
+    - after: '12:30'
+      before: '15:30'
+      condition: time
+  action:
+  - data: {}
+    entity_id: switch.fan_socket
+    service: switch.turn_on
+- id: '1594554995044'
+  alias: Fan Auto Off
+  description: ''
+  trigger:
+  - below: '19'
+    entity_id: sensor.ben_temperature
+    for: 00:10:00
+    platform: numeric_state
+  condition:
+  - after: '17:00'
+    before: 03:00
+    condition: time
+  - condition: or
+    conditions:
+    - after: '12:30'
+      before: '15:30'
+      condition: time
+  action:
+  - data: {}
+    entity_id: switch.fan_socket
+    service: switch.turn_off

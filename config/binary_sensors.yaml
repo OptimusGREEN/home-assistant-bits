@@ -1,9 +1,9 @@
-# - platform: mqtt
-#   name: "Lounge PIR"
-#   payload_on: "ON"
-#   payload_off: "OFF"
-#   device_class: motion
-#   state_topic: "lounge_multi_sensor/stat/POWER"
+- platform: mqtt
+  name: "Lounge PIR"
+  payload_on: "ON"
+  payload_off: "OFF"
+  device_class: motion
+  state_topic: "lounge_multi_sensor/stat/POWER"
 
 - platform: mqtt
   name: "Tecknet Door Bell"
@@ -15,6 +15,16 @@
   # payload_on: "rfraw AA B0 21 03 08 00BE 0244 1770 28181908190818190819081909081909090908190818190908 55; rfraw 0"
   payload_on: "295BD3"
   off_delay: 2
+
+# - platform: mqtt
+#   name: "White Door Bell"
+#   state_topic: "RFBridge/tele/RESULT"
+#   value_template: '{{value_json.RfReceived.Data}}'
+#   availability_topic: "RFBridge/tele/LWT"
+#   payload_available: "Online"
+#   payload_not_available: "Offline"
+#   payload_on: "rfraw AA B0 1A 03 08 017C 0424 1932 281809181818180909091818091809090909 55; rfraw 0"
+#   off_delay: 2
 
 - name: Back Garden Motion
   platform: mqtt
@@ -42,8 +52,8 @@
   payload_on: "ON"
   payload_off: "OFF"
   device_class: motion
-  state_topic: "atmos_playroom/stat/POWER"
-  availability_topic: "atmos_playroom/tele/LWT"
+  state_topic: "playroom_multisensor/stat/POWER"
+  availability_topic: "playroom_multisensor/tele/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
 
@@ -57,12 +67,13 @@
   host: 192.168.0.51
   scan_interval: 30
 
-- platform: mqtt
-  name: "Someone Home"
-  payload_on: "on"
-  payload_off: "off"
-  device_class: presence
-  state_topic: "someone_home/state"
+- platform: template
+  sensors:
+    someone_home:
+      friendly_name: Someone Home
+      value_template: "{{ states.input_boolean.someone_home.state == 'on'}}"
+      entity_id: input_boolean.someone_home
+      device_class: occupancy
 
 - platform: template
   sensors:
@@ -85,13 +96,10 @@
 
 - platform: mqtt
   name: "Security Alarm Status"
-  payload_on: "ON" # Standard
-  payload_off: "OFF" # Standard
-  # device_class: lock
-  # payload_on: "OFF" # Reversed for lock device class
-  # payload_off: "ON" # Reversed for lock device class
-  state_topic: "security_alarm/armed"
-  availability_topic: "security_alarm/set/tele/LWT"
+  payload_on: "ON"
+  payload_off: "OFF"
+  state_topic: "arduino/alarm_monitor/armed"
+  availability_topic: "arduino/alarm_monitor/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
 
@@ -100,8 +108,8 @@
   payload_on: "ON"
   payload_off: "OFF"
   device_class: safety
-  state_topic: "security_alarm/alert"
-  availability_topic: "security_alarm/trigger/tele/LWT"
+  state_topic: "arduino/alarm_monitor/intruder"
+  availability_topic: "arduino/alarm_monitor/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
 
@@ -166,15 +174,15 @@
 - platform: mqtt
   name: "OptiSERVE_1TB_1 State"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/mount/OptiSERVE_1TB_1"
+  state_topic: "OptiSERVE/disks/mount/1TB_1"
   device_class: "connectivity"
   payload_on: "mounted"
   payload_off: "unmounted"
 
 - platform: mqtt
-  name: "OptiSERVE_1TB_2 State"
+  name: "OptiSERVE_NextCloud State"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/mount/OptiSERVE_1TB_2"
+  state_topic: "OptiSERVE/disks/mount/NextCloud"
   device_class: "connectivity"
   payload_on: "mounted"
   payload_off: "unmounted"
@@ -182,7 +190,7 @@
 - platform: mqtt
   name: "OptiSERVE_Server State"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/mount/OptiSERVE_Server"
+  state_topic: "OptiSERVE/disks/mount/Server"
   device_class: "connectivity"
   payload_on: "mounted"
   payload_off: "unmounted"
@@ -190,7 +198,23 @@
 - platform: mqtt
   name: "OptiSERVE_Backup State"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/mount/OptiSERVE_Backup"
+  state_topic: "OptiSERVE/disks/mount/Backup"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+- platform: mqtt
+  name: "MyBook State"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/mount/MyBook"
+  device_class: "connectivity"
+  payload_on: "mounted"
+  payload_off: "unmounted"
+
+- platform: mqtt
+  name: "MyBook Mini State"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/mount/MyBookMini"
   device_class: "connectivity"
   payload_on: "mounted"
   payload_off: "unmounted"

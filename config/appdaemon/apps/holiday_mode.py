@@ -16,7 +16,7 @@ class HolidayMode(hass.Hass):
       self.listen_state(self.end_holiday_mode, self.someone_home, new='on')
       
       self.common_lights = ("switch.landing_light_switch_top", "switch.hall_light_switch_back", "switch.bathroom_light_switch")
-      self.ensuite_lights = ("light.bedroom_lamp_1", "light.bedroom_lamp_2", "light.ensuite_light", "switch.olivias_lamp")
+      self.bedroom_lights = ("light.bedroom_lamp_1", "light.bedroom_lamp_2", "switch.olivias_lamp")
       self.living_area = ("light.dining_room_lamp_1", "light.dining_room_lamp_2", "light.standing_lamp", "light.living_room_lamp_1", "light.living_room_lamp_2", "light.living_room_lamp_3")
       self.outside_lights = ("switch.front_outside_light", "switch.back_outside_light_switch")
       self.playroom_lights = ("group.play_room_tv", "group.play_room_centre", "group.play_room_sofa", "group.playroom_lights")

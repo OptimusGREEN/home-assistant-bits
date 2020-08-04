@@ -54,3 +54,23 @@ config/tmp/
 config/tts/
 
 config/known_devices.yaml
+
+config/appdaemon/apps/__pycache__/
+
+config/appdaemon/apps/.idea/
+
+config/appdaemon/apps/globals/modules/__pycache__/
+
+config/appdaemon/apps/globals/__pycache__/
+
+config/custom_components/__pycache__/
+
+config/custom_components/eufy_vacuum/__pycache__/
+
+config/custom_components/fcm-android/__pycache__/
+
+*.pyc
+
+config/custom_components/hacs/
+
+config/appdaemon/apps/globals/modules/my_secrets.py

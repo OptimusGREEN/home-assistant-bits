@@ -3,3 +3,951 @@
   entities:
     group.play_room_lights:
       state: 'on'
+- name: Playroom Disco
+  id: '15976561822490'
+  entities:
+    group.play_room_lights:
+      brightness: 255
+      effect: 4
+      state: true
+- name: Cycle Playroom
+  id: '159765618224650'
+  entities:
+    light.playroom_centre1:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_centre2:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_tv1:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_tv2:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_sofa1:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_sofa2:
+      state: true
+      brightness: 255
+      effect: 2
+- name: Coloured Playroom
+  id: '15976123322490'
+  entities:
+    light.playroom_centre1:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      effect: 0
+    light.playroom_centre2:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 255
+      - 214
+      - 0
+      effect: 0
+    light.playroom_tv1:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 0
+      - 255
+      - 255
+      effect: 0
+    light.playroom_tv2:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      effect: 0
+    light.playroom_sofa1:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 0
+      - 0
+      - 255
+      effect: 0
+    light.playroom_sofa2:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 255
+      - 0
+      - 190
+      effect: 0
+- name: White Playroom
+  id: '159723456822490'
+  entities:
+    group.play_room_lights:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      effect: 0
+- name: Dimmed White Playroom
+  id: '15976561822495430'
+  entities:
+    group.play_room_lights:
+      state: true
+      brightness: 200
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      effect: 0
+- name: Celtic Playroom
+  id: '159765618276542490'
+  entities:
+    group.play_room_sofa:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      effect: 0
+    group.play_room_centre:
+      state: true
+      brightness: 125
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      effect: 0
+    group.play_room_tv:
+      state: true
+      brightness: 125
+      rgb_color:
+      - 255
+      - 214
+      - 0
+      effect: 0
+- name: Lit Couch Playroom
+  id: '15976561822499870'
+  entities:
+    light.playroom_centre1:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_centre2:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_tv1:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_tv2:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_sofa1:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      effect: 0
+    light.playroom_sofa2:
+      state: true
+      brightness: 255
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      effect: 0
+- name: TV Disco Playroom
+  id: '15976561822094890'
+  entities:
+    light.playroom_centre1:
+      state: true
+      brightness: 255
+      effect: 2
+    light.playroom_centre2:
+      state: true
+      brightness: 255
+      effect: 3
+    light.playroom_tv1:
+      state: true
+      brightness: 255
+      effect: 4
+    light.playroom_tv2:
+      state: true
+      brightness: 255
+      effect: 4
+    light.playroom_sofa1:
+      state: true
+      brightness: 200
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      effect: 0
+    light.playroom_sofa2:
+      state: true
+      brightness: 200
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      effect: 0
+- name: Downstairs Lights Warm
+  id: '15976561823481'
+  entities:
+    light.living_room_lamp_1:
+      brightness: 254
+      color_temp: 370
+      friendly_name: Living Room Lamp 1
+      icon: mdi:lamp
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.living_room_lamp_2:
+      brightness: 254
+      color_temp: 370
+      friendly_name: Living Room Lamp 2
+      icon: mdi:lamp
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.living_room_lamp_3:
+      brightness: 254
+      color_temp: 370
+      friendly_name: Living Room Lamp 3
+      icon: mdi:lamp
+      is_deconz_group: false
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 43
+    light.standing_lamp:
+      brightness: 255
+      effect_list:
+      - colorloop
+      friendly_name: Standing Lamp
+      hs_color:
+      - 30
+      - 43.137
+      icon: mdi:lamp
+      is_deconz_group: false
+      rgb_color:
+      - 255
+      - 200
+      - 145
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.443
+      - 0.379
+    switch.radiator_light:
+      friendly_name: Radiator Light
+      icon: mdi:radiator
+      state: 'on'
+    switch.tv_back_light:
+      friendly_name: TV Back Light
+      icon: mdi:monitor
+      state: 'off'
+    light.dining_room_lamp_1:
+      state: 'on'
+    light.dining_room_lamp_2:
+      state: 'on'
+- name: TV Time
+  id: '15976561823480'
+  entities:
+    light.living_room_lamp_1:
+      state: true
+      brightness: 170
+    light.living_room_lamp_2:
+      state: true
+      brightness: 170
+    light.living_room_lamp_3:
+      state: true
+      brightness: 170
+    light.standing_lamp:
+      state: false
+    light.dining_room_lamp_1:
+      state: true
+      brightness: 255
+    light.dining_room_lamp_2:
+      state: true
+      brightness: 255
+    light.hall_lamp:
+      state: true
+      brightness: 255
+    switch.tv_back_light:
+      state: true
+    switch.radiator_light:
+      state: true
+    switch.living_room_unit_lights:
+      state: true
+- id: '1592243763632'
+  name: Olivias Night Light
+  entities:
+    input_select.wled_presets:
+      editable: false
+      options:
+      - '[PL=01] Preset 1'
+      - '[PL=02] Preset 2'
+      - '[PL=03] Preset 3'
+      - '[PL=04] Preset 4'
+      - '[PL=05] Preset 5'
+      - '[PL=06] Preset 6'
+      - '[PL=07] Preset 7'
+      - '[PL=08] Preset 8'
+      - '[PL=09] Preset 9'
+      - '[PL=10] Preset 10'
+      - '[PL=11] Preset 11'
+      - '[PL=12] Preset 12'
+      - '[PL=13] Preset 13'
+      - '[PL=14] Preset 14'
+      - '[PL=15] Preset 15'
+      - '[PL=16] Preset 16'
+      state: '[PL=16] Preset 16'
+    light.olivias_lamp:
+      friendly_name: Olivia's Lamp
+      is_deconz_group: false
+      state: 'off'
+      supported_features: 41
+    light.wled_olivia_bed_lights:
+      assumed_state: true
+      brightness: 255
+      effect: none
+      effect_list:
+      - '[FX=00] Solid'
+      - '[FX=01] Blink'
+      - '[FX=02] Breathe'
+      - '[FX=03] Wipe'
+      - '[FX=04] Wipe Random'
+      - '[FX=05] Random Colors'
+      - '[FX=06] Sweep'
+      - '[FX=07] Dynamic'
+      - '[FX=08] Colorloop'
+      - '[FX=09] Rainbow'
+      - '[FX=10] Scan'
+      - '[FX=11] Dual Scan'
+      - '[FX=12] Fade'
+      - '[FX=13] Chase'
+      - '[FX=14] Chase Rainbow'
+      - '[FX=15] Running'
+      - '[FX=16] Saw'
+      - '[FX=17] Twinkle'
+      - '[FX=18] Dissolve'
+      - '[FX=19] Dissolve Rnd'
+      - '[FX=20] Sparkle'
+      - '[FX=21] Dark Sparkle'
+      - '[FX=22] Sparkle+'
+      - '[FX=23] Strobe'
+      - '[FX=24] Strobe Rainbow'
+      - '[FX=25] Mega Strobe'
+      - '[FX=26] Blink Rainbow'
+      - '[FX=27] Android'
+      - '[FX=28] Chase'
+      - '[FX=29] Chase Random'
+      - '[FX=30] Chase Rainbow'
+      - '[FX=31] Chase Flash'
+      - '[FX=32] Chase Flash Rnd'
+      - '[FX=33] Rainbow Runner'
+      - '[FX=34] Colorful'
+      - '[FX=35] Traffic Light'
+      - '[FX=36] Sweep Random'
+      - '[FX=37] Running 2'
+      - '[FX=38] Red & Blue'
+      - '[FX=39] Stream'
+      - '[FX=40] Scanner'
+      - '[FX=41] Lighthouse'
+      - '[FX=42] Fireworks'
+      - '[FX=43] Rain'
+      - '[FX=44] Merry Christmas'
+      - '[FX=45] Fire Flicker'
+      - '[FX=46] Gradient'
+      - '[FX=47] Loading'
+      - '[FX=48] In Out'
+      - '[FX=49] In In'
+      - '[FX=50] Out Out'
+      - '[FX=51] Out In'
+      - '[FX=52] Circus'
+      - '[FX=53] Halloween'
+      - '[FX=54] Tri Chase'
+      - '[FX=55] Tri Wipe'
+      - '[FX=56] Tri Fade'
+      - '[FX=57] Lightning'
+      - '[FX=58] ICU'
+      - '[FX=59] Multi Comet'
+      - '[FX=60] Dual Scanner'
+      - '[FX=61] Stream 2'
+      - '[FX=62] Oscillate'
+      - '[FX=63] Pride 2015'
+      - '[FX=64] Juggle'
+      - '[FX=65] Palette'
+      - '[FX=66] Fire 2012'
+      - '[FX=67] Colorwaves'
+      - '[FX=68] BPM'
+      - '[FX=69] Fill Noise'
+      - '[FX=70] Noise 1'
+      - '[FX=71] Noise 2'
+      - '[FX=72] Noise 3'
+      - '[FX=73] Noise 4'
+      - '[FX=74] Colortwinkle'
+      - '[FX=75] Lake'
+      - '[FX=76] Meteor'
+      - '[FX=77] Smooth Meteor'
+      - '[FX=78] Railway'
+      - '[FX=79] Ripple'
+      - '[FX=80] Twinklefox'
+      - '[FX=81] Twinklecat'
+      - '[FX=82] Halloween Eyes'
+      - '[FX=83] Solid Pattern'
+      - '[FX=84] Solid Pattern Tri'
+      - '[FX=85] Spots'
+      - '[FX=86] Spots Fade'
+      - '[FX=87] Glitter'
+      - '[FX=88] Candle'
+      - '[FX=89] Fireworks Starburst'
+      - '[FX=90] Fireworks 1D'
+      - '[FX=91] Bouncing Balls'
+      - '[FX=92] Sinelon'
+      - '[FX=93] Sinelon Dual'
+      - '[FX=94] Sinelon Rainbow'
+      - '[FX=95] Popcorn'
+      - '[FX=96] Drip'
+      - '[FX=97] Plasma'
+      - '[FX=98] Percent'
+      - '[FX=99] Ripple Rainbow'
+      - '[FX=100] Heartbeat'
+      friendly_name: WLED Olivia Bed Lights
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      state: 'on'
+      supported_features: 21
+      xy_color:
+      - 0.323
+      - 0.329
+- id: '1592245792358'
+  name: Olivia Rainbow Bed
+  entities:
+    light.olivias_bed_bottom:
+      brightness: 159
+      effect: Colorloop
+      effect_list:
+      - Android
+      - Blink
+      - Blink Rainbow
+      - Bouncing Balls
+      - Bpm
+      - Breathe
+      - Candle
+      - Candle Multi
+      - Chase
+      - Chase Flash
+      - Chase Flash Rnd
+      - Chase Rainbow
+      - Chase Random
+      - Circus
+      - Colorful
+      - Colorloop
+      - Colortwinkles
+      - Colorwaves
+      - Dissolve
+      - Dissolve Rnd
+      - Drip
+      - Dynamic
+      - Fade
+      - Fill Noise
+      - Fire 2012
+      - Fire Flicker
+      - Fireworks
+      - Fireworks 1D
+      - Fireworks Starburst
+      - Glitter
+      - Gradient
+      - Halloween
+      - Halloween Eyes
+      - Heartbeat
+      - ICU
+      - Juggle
+      - Lake
+      - Lighthouse
+      - Lightning
+      - Loading
+      - Merry Christmas
+      - Meteor
+      - Meteor Smooth
+      - Multi Comet
+      - Noise 1
+      - Noise 2
+      - Noise 3
+      - Noise 4
+      - Oscillate
+      - Pacifica
+      - Palette
+      - Percent
+      - Plasma
+      - Police
+      - Police All
+      - Popcorn
+      - Pride 2015
+      - Railway
+      - Rain
+      - Rainbow
+      - Rainbow Runner
+      - Random Colors
+      - Red & Blue
+      - Ripple
+      - Ripple Rainbow
+      - Running
+      - Running 2
+      - Saw
+      - Scan
+      - Scan Dual
+      - Scanner
+      - Scanner Dual
+      - Sinelon
+      - Sinelon Dual
+      - Sinelon Rainbow
+      - Solid
+      - Solid Pattern
+      - Solid Pattern Tri
+      - Sparkle
+      - Sparkle Dark
+      - Sparkle+
+      - Spots
+      - Spots Fade
+      - Stream
+      - Stream 2
+      - Strobe
+      - Strobe Mega
+      - Strobe Rainbow
+      - Sweep
+      - Sweep Random
+      - Theater
+      - Theater Rainbow
+      - Traffic Light
+      - Tri Chase
+      - Tri Fade
+      - Tri Wipe
+      - Twinkle
+      - Twinklecat
+      - Twinklefox
+      - Two Areas
+      - Two Dots
+      - Wipe
+      - Wipe Random
+      friendly_name: Olivias Bed Bottom
+      hs_color:
+      - 180
+      - 85.882
+      icon: mdi:led-strip-variant
+      intensity: 128
+      max_mireds: 500
+      min_mireds: 153
+      palette: Default
+      playlist:
+      preset:
+      reverse: false
+      rgb_color:
+      - 36
+      - 255
+      - 255
+      speed: 31
+      state: 'on'
+      supported_features: 55
+      xy_color:
+      - 0.156
+      - 0.342
+    light.olivias_bed_lights:
+      brightness: 255
+      friendly_name: Olivias Bed Lights
+      icon: mdi:led-strip-variant
+      state: 'on'
+      supported_features: 33
+    light.olivias_bed_top:
+      brightness: 255
+      effect: Palette
+      effect_list:
+      - Android
+      - Blink
+      - Blink Rainbow
+      - Bouncing Balls
+      - Bpm
+      - Breathe
+      - Candle
+      - Candle Multi
+      - Chase
+      - Chase Flash
+      - Chase Flash Rnd
+      - Chase Rainbow
+      - Chase Random
+      - Circus
+      - Colorful
+      - Colorloop
+      - Colortwinkles
+      - Colorwaves
+      - Dissolve
+      - Dissolve Rnd
+      - Drip
+      - Dynamic
+      - Fade
+      - Fill Noise
+      - Fire 2012
+      - Fire Flicker
+      - Fireworks
+      - Fireworks 1D
+      - Fireworks Starburst
+      - Glitter
+      - Gradient
+      - Halloween
+      - Halloween Eyes
+      - Heartbeat
+      - ICU
+      - Juggle
+      - Lake
+      - Lighthouse
+      - Lightning
+      - Loading
+      - Merry Christmas
+      - Meteor
+      - Meteor Smooth
+      - Multi Comet
+      - Noise 1
+      - Noise 2
+      - Noise 3
+      - Noise 4
+      - Oscillate
+      - Pacifica
+      - Palette
+      - Percent
+      - Plasma
+      - Police
+      - Police All
+      - Popcorn
+      - Pride 2015
+      - Railway
+      - Rain
+      - Rainbow
+      - Rainbow Runner
+      - Random Colors
+      - Red & Blue
+      - Ripple
+      - Ripple Rainbow
+      - Running
+      - Running 2
+      - Saw
+      - Scan
+      - Scan Dual
+      - Scanner
+      - Scanner Dual
+      - Sinelon
+      - Sinelon Dual
+      - Sinelon Rainbow
+      - Solid
+      - Solid Pattern
+      - Solid Pattern Tri
+      - Sparkle
+      - Sparkle Dark
+      - Sparkle+
+      - Spots
+      - Spots Fade
+      - Stream
+      - Stream 2
+      - Strobe
+      - Strobe Mega
+      - Strobe Rainbow
+      - Sweep
+      - Sweep Random
+      - Theater
+      - Theater Rainbow
+      - Traffic Light
+      - Tri Chase
+      - Tri Fade
+      - Tri Wipe
+      - Twinkle
+      - Twinklecat
+      - Twinklefox
+      - Two Areas
+      - Two Dots
+      - Wipe
+      - Wipe Random
+      friendly_name: Olivias Bed Top
+      hs_color:
+      - 300
+      - 100
+      icon: mdi:led-strip-variant
+      intensity: 128
+      max_mireds: 500
+      min_mireds: 153
+      palette: Default
+      playlist:
+      preset:
+      reverse: false
+      rgb_color:
+      - 255
+      - 0
+      - 255
+      speed: 31
+      state: 'on'
+      supported_features: 55
+      xy_color:
+      - 0.385
+      - 0.155
+- id: '1592417199183'
+  name: Olivia Bedtime
+  entities:
+    input_boolean.gmusic_player_shuffle:
+      editable: false
+      friendly_name: Shuffle
+      icon: mdi:shuffle
+      state: 'off'
+    input_select.gmusic_player_playlist:
+      editable: false
+      friendly_name: Playlist
+      icon: mdi:playlist-music
+      options:
+      - Christmas
+      - The Pretty Reckless
+      - Bathgonbury
+      - Royal Blood
+      - Classical
+      - Emma
+      - Choir
+      - Disney Olivia
+      - Olivia
+      - Olivia xmas
+      - John Favourites
+      - Olivia Green Bedtime Tunes
+      - My Stuff
+      state: Olivia Green Bedtime Tunes
+    input_select.gmusic_player_source:
+      editable: false
+      friendly_name: Source
+      icon: mdi:library-music
+      options:
+      - Playlist
+      - Station
+      state: Playlist
+    input_select.gmusic_player_speakers:
+      editable: false
+      friendly_name: Speakers
+      icon: mdi:speaker
+      options:
+      - main_speakers
+      - bedroom_speaker
+      - dining_room_speaker
+      - living_room_speaker
+      - kitchen_speaker
+      - olivia_speaker
+      - playroom_speaker
+      state: olivia_speaker
+    input_select.wled_presets:
+      editable: false
+      options:
+      - '[PL=01] Preset 1'
+      - '[PL=02] Preset 2'
+      - '[PL=03] Preset 3'
+      - '[PL=04] Preset 4'
+      - '[PL=05] Preset 5'
+      - '[PL=06] Preset 6'
+      - '[PL=07] Preset 7'
+      - '[PL=08] Preset 8'
+      - '[PL=09] Preset 9'
+      - '[PL=10] Preset 10'
+      - '[PL=11] Preset 11'
+      - '[PL=12] Preset 12'
+      - '[PL=13] Preset 13'
+      - '[PL=14] Preset 14'
+      - '[PL=15] Preset 15'
+      - '[PL=16] Preset 16'
+      state: '[PL=16] Preset 16'
+    light.wled_olivia_bed_lights:
+      assumed_state: true
+      brightness: 255
+      effect: none
+      effect_list:
+      - '[FX=00] Solid'
+      - '[FX=01] Blink'
+      - '[FX=02] Breathe'
+      - '[FX=03] Wipe'
+      - '[FX=04] Wipe Random'
+      - '[FX=05] Random Colors'
+      - '[FX=06] Sweep'
+      - '[FX=07] Dynamic'
+      - '[FX=08] Colorloop'
+      - '[FX=09] Rainbow'
+      - '[FX=10] Scan'
+      - '[FX=11] Dual Scan'
+      - '[FX=12] Fade'
+      - '[FX=13] Chase'
+      - '[FX=14] Chase Rainbow'
+      - '[FX=15] Running'
+      - '[FX=16] Saw'
+      - '[FX=17] Twinkle'
+      - '[FX=18] Dissolve'
+      - '[FX=19] Dissolve Rnd'
+      - '[FX=20] Sparkle'
+      - '[FX=21] Dark Sparkle'
+      - '[FX=22] Sparkle+'
+      - '[FX=23] Strobe'
+      - '[FX=24] Strobe Rainbow'
+      - '[FX=25] Mega Strobe'
+      - '[FX=26] Blink Rainbow'
+      - '[FX=27] Android'
+      - '[FX=28] Chase'
+      - '[FX=29] Chase Random'
+      - '[FX=30] Chase Rainbow'
+      - '[FX=31] Chase Flash'
+      - '[FX=32] Chase Flash Rnd'
+      - '[FX=33] Rainbow Runner'
+      - '[FX=34] Colorful'
+      - '[FX=35] Traffic Light'
+      - '[FX=36] Sweep Random'
+      - '[FX=37] Running 2'
+      - '[FX=38] Red & Blue'
+      - '[FX=39] Stream'
+      - '[FX=40] Scanner'
+      - '[FX=41] Lighthouse'
+      - '[FX=42] Fireworks'
+      - '[FX=43] Rain'
+      - '[FX=44] Merry Christmas'
+      - '[FX=45] Fire Flicker'
+      - '[FX=46] Gradient'
+      - '[FX=47] Loading'
+      - '[FX=48] In Out'
+      - '[FX=49] In In'
+      - '[FX=50] Out Out'
+      - '[FX=51] Out In'
+      - '[FX=52] Circus'
+      - '[FX=53] Halloween'
+      - '[FX=54] Tri Chase'
+      - '[FX=55] Tri Wipe'
+      - '[FX=56] Tri Fade'
+      - '[FX=57] Lightning'
+      - '[FX=58] ICU'
+      - '[FX=59] Multi Comet'
+      - '[FX=60] Dual Scanner'
+      - '[FX=61] Stream 2'
+      - '[FX=62] Oscillate'
+      - '[FX=63] Pride 2015'
+      - '[FX=64] Juggle'
+      - '[FX=65] Palette'
+      - '[FX=66] Fire 2012'
+      - '[FX=67] Colorwaves'
+      - '[FX=68] BPM'
+      - '[FX=69] Fill Noise'
+      - '[FX=70] Noise 1'
+      - '[FX=71] Noise 2'
+      - '[FX=72] Noise 3'
+      - '[FX=73] Noise 4'
+      - '[FX=74] Colortwinkle'
+      - '[FX=75] Lake'
+      - '[FX=76] Meteor'
+      - '[FX=77] Smooth Meteor'
+      - '[FX=78] Railway'
+      - '[FX=79] Ripple'
+      - '[FX=80] Twinklefox'
+      - '[FX=81] Twinklecat'
+      - '[FX=82] Halloween Eyes'
+      - '[FX=83] Solid Pattern'
+      - '[FX=84] Solid Pattern Tri'
+      - '[FX=85] Spots'
+      - '[FX=86] Spots Fade'
+      - '[FX=87] Glitter'
+      - '[FX=88] Candle'
+      - '[FX=89] Fireworks Starburst'
+      - '[FX=90] Fireworks 1D'
+      - '[FX=91] Bouncing Balls'
+      - '[FX=92] Sinelon'
+      - '[FX=93] Sinelon Dual'
+      - '[FX=94] Sinelon Rainbow'
+      - '[FX=95] Popcorn'
+      - '[FX=96] Drip'
+      - '[FX=97] Plasma'
+      - '[FX=98] Percent'
+      - '[FX=99] Ripple Rainbow'
+      - '[FX=100] Heartbeat'
+      friendly_name: WLED Olivia Bed Lights
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      state: 'on'
+      supported_features: 21
+      xy_color:
+      - 0.323
+      - 0.329
+    media_player.gmusic_player:
+      _player_state: 'off'
+      entity_picture: http://lh3.googleusercontent.com/rwDy-yDzTFwf9hKhnAmT93Fhq8dIJ0rvTf5FNilCJnIKJn-lvm_MM3QUJN8LEaciBRF3efh1Pg
+      entity_picture_local: /api/media_player_proxy/media_player.gmusic_player?token=fc867aa0fb5534a0abeda240af7a022a0bb83e31dfde1e33121ed6b9179b808d&cache=ca2818ded2d323db
+      friendly_name: gmusic_player
+      icon: mdi:music-circle
+      is_volume_muted: false
+      media_album_name: The Greatest Showman (Original Motion Picture Soundtrack)
+      media_artist: Michelle Williams
+      media_content_type: music
+      media_title: A Million Dreams
+      playlists:
+      - Christmas
+      - The Pretty Reckless
+      - Bathgonbury
+      - Royal Blood
+      - Classical
+      - Emma
+      - Choir
+      - Disney Olivia
+      - Olivia
+      - Olivia xmas
+      - John Favourites
+      - Olivia Green Bedtime Tunes
+      - My Stuff
+      shuffle: false
+      shuffle_mode: Shuffle
+      state: playing
+      stations:
+      - I'm Feeling Lucky
+      - Royal Blood
+      - Sing-Along Vintage Hits
+      - Big Tune Classics
+      - 00s Sing-Alongs
+      - It's a Beautiful Day
+      supported_features: 55229
+      volume_level: 0.3
+    media_player.olivia_speaker:
+      app_id: CC1AD845
+      app_name: Default Media Receiver
+      entity_picture_local:
+      friendly_name: Olivia's Speaker
+      is_volume_muted: false
+      media_content_id: http://192.168.7.1:9999/get_song?id=Tqgdrn2otc3va4zkppbkt56eifi
+      media_duration: 269.505306
+      media_position: 1.054259
+      media_position_updated_at: '2020-06-19T11:05:01.610488+00:00'
+      state: playing
+      supported_features: 21391
+      volume_level: 0.30000001192092896

@@ -1,0 +1,105 @@
+- platform: mqtt
+  name: "Downstairs Lights"
+  state_topic: "arduino/energy_monitor/fuse_board/ds_lights"
+  unit_of_measurement: "W"
+  device_class: power
+
+- platform: mqtt
+  name: "Upstairs Lights"
+  state_topic: "arduino/energy_monitor/fuse_board/us_lights"
+  unit_of_measurement: "W"
+  device_class: power
+
+- platform: mqtt
+  name: "House Sockets"
+  state_topic: "arduino/energy_monitor/fuse_board/house_skts"
+  unit_of_measurement: "W"
+  device_class: power
+
+- platform: mqtt
+  name: "Kitchen Sockets"
+  state_topic: "arduino/energy_monitor/fuse_board/kitchen_skts"
+  unit_of_measurement: "W"
+  device_class: power
+
+#### money #####
+
+- platform: template
+  sensors:
+    house_sockets_pph:
+      friendly_name: House Sockets pph
+      unit_of_measurement: "p"
+      value_template: "{{ '%.2f'|format (states('sensor.house_sockets') | float / 1000 * 16.92)}}"
+
+- platform: template
+  sensors:
+    kitchen_sockets_pph:
+      friendly_name: Kitchen Sockets pph
+      unit_of_measurement: "p"
+      value_template: "{{ '%.2f'|format (states('sensor.kitchen_sockets') | float / 1000 * 16.92) }}"
+
+- platform: template
+  sensors:
+    upstairs_lights_pph:
+      friendly_name: Upstairs Lights pph
+      unit_of_measurement: "p"
+      value_template: "{{ '%.2f'|format (states('sensor.upstairs_lights') | float / 1000 * 16.92) }}"
+
+- platform: template
+  sensors:
+    downstairs_lights_pph:
+      friendly_name: Downstairs Lights pph
+      unit_of_measurement: "p"
+      value_template: "{{ '%.2f'|format (states('sensor.downstairs_lights') | float / 1000 * 16.92) }}"
+
+##### daily £  ######
+
+- platform: template
+  sensors:
+    house_sockets_spent_today:
+      friendly_name: House Sockets Spent Today
+      value_template: "{{ '£%.2f'|format (states('sensor.house_sockets_daily') | float / 1000 * 0.1692)}}"
+
+- platform: template
+  sensors:
+    kitchen_sockets_spent_today:
+      friendly_name: Kitchen Sockets Spent Today
+      value_template: "{{ '£%.2f'|format (states('sensor.kitchen_sockets_daily') | float / 1000 * 0.1692) }}"
+
+- platform: template
+  sensors:
+    upstairs_lights_spent_today:
+      friendly_name: Upstairs Lights Spent Today
+      value_template: "{{ '£%.2f'|format (states('sensor.upstairs_lights_daily') | float / 1000 * 0.1692) }}"
+
+- platform: template
+  sensors:
+    downstairs_lights_spent_today:
+      friendly_name: Downstairs Lights Spent Today
+      value_template: "{{ '£%.2f'|format (states('sensor.downstairs_lights_daily') | float / 1000 * 0.1692) }}"
+
+##### monthly £ ######
+
+- platform: template
+  sensors:
+    house_sockets_spent_month:
+      friendly_name: House Sockets Spent Month
+      value_template: "{{ '£%.2f'|format (states('sensor.house_sockets_monthly') | float / 1000 * 0.1692)}}"
+
+- platform: template
+  sensors:
+    kitchen_sockets_spent_month:
+      friendly_name: Kitchen Sockets Spent Month
+      value_template: "{{ '£%.2f'|format (states('sensor.kitchen_sockets_monthly') | float / 1000 * 0.1692) }}"
+
+- platform: template
+  sensors:
+    upstairs_lights_spent_month:
+      friendly_name: Upstairs Lights Spent Month
+      value_template: "{{ '£%.2f'|format (states('sensor.upstairs_lights_monthly') | float / 1000 * 0.1692) }}"
+
+- platform: template
+  sensors:
+    downstairs_lights_spent_month:
+      friendly_name: Downstairs Lights Spent Month
+      value_template: "{{ '£%.2f'|format (states('sensor.downstairs_lights_monthly') | float / 1000 * 0.1692) }}"

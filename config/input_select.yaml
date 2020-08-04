@@ -17,4 +17,4 @@ heating_boost_duration:
     - 30
     - 45
     - 60
-  initial: 30
+  initial: 15

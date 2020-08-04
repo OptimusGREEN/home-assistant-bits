@@ -1,16 +1,16 @@
 
-- platform: template
-  switches:
-    dummy_heater_switch_1:
-      value_template: "{{ is_state('input_boolean.dummy_heater_1', 'on') }}"
-      turn_on:
-        service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.dummy_heater_1
-      turn_off:
-        service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.dummy_heater_1
+# - platform: template
+#   switches:
+#     dummy_heater_switch_1:
+#       value_template: "{{ is_state('input_boolean.dummy_heater_1', 'on') }}"
+#       turn_on:
+#         service: input_boolean.turn_on
+#         data:
+#           entity_id: input_boolean.dummy_heater_1
+#       turn_off:
+#         service: input_boolean.turn_off
+#         data:
+#           entity_id: input_boolean.dummy_heater_1
 
 
 - platform: template
@@ -48,15 +48,15 @@
 
 ####### RF Plugs ##########
 
-- platform: mqtt
-  name: "Olivias Lamp"
-  command_topic: RFBridge/cmnd/rfcode
-  availability_topic: "RFBridge/tele/LWT"
-  payload_available: "Online"
-  payload_not_available: "Offline"
-  payload_on: "#1000002"
-  payload_off: "#1000001"
-  optimistic: true
+# - platform: mqtt
+#   name: "RF Socket 1"
+#   command_topic: RFBridge/cmnd/rfcode
+#   availability_topic: "RFBridge/tele/LWT"
+#   payload_available: "Online"
+#   payload_not_available: "Offline"
+#   payload_on: "#1000002"
+#   payload_off: "#1000001"
+#   optimistic: true
 
 - platform: mqtt
   name: "Under Bed Light"
@@ -68,6 +68,17 @@
   payload_not_available: "Offline"
   payload_on: "#1000235"
   payload_off: "#1000234"
+  optimistic: true
+
+- platform: mqtt
+  name: "Desk Phone Charger"
+  state_topic: "RFBridge/tele/RESULT"
+  command_topic: "RFBridge/cmnd/rfcode"
+  availability_topic: "RFBridge/tele/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  payload_on: "#5634232E"
+  payload_off: "#56342326"
   optimistic: true
 
 - platform: mqtt

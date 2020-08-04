@@ -1,0 +1,24 @@
+house_sockets_daily:
+  source: sensor.house_sockets
+  cycle: daily
+house_sockets_monthly:
+  source: sensor.house_sockets
+  cycle: monthly
+kitchen_sockets_daily:
+  source: sensor.kitchen_sockets
+  cycle: daily
+kitchen_sockets_monthly:
+  source: sensor.kitchen_sockets
+  cycle: monthly
+downstairs_lights_daily:
+  source: sensor.downstairs_lights
+  cycle: daily
+downstairs_lights_monthly:
+  source: sensor.downstairs_lights
+  cycle: monthly
+upstairs_lights_daily:
+  source: sensor.upstairs_lights
+  cycle: daily
+upstairs_lights_monthly:
+  source: sensor.upstairs_lights
+  cycle: monthly

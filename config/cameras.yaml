@@ -1,7 +1,7 @@
 
 - platform: generic
   name: Playroom
-  stream_source: !secret cam_playroom_shinobi
+  stream_source: !secret cam_playroom_url
   still_image_url: !secret cam_playroom_still_image
 
 - platform: onviffy

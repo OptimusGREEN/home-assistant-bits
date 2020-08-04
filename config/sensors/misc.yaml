@@ -1,0 +1,5 @@
+- platform: template
+  sensors:
+    magnetic_results:
+      friendly_name: "Magnetic Results"
+      value_template: "Try a magnetic search..."

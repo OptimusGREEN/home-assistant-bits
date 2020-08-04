@@ -1,18 +1,16 @@
-- platform: mqtt
-  name: "Target Temperature"
-  state_topic: "home/hall/target_temp"
-  unit_of_measurement: '°C'
-  value_template: "{{ state_attr('climate.thermostat', 'temperature') }}"
-  force_update: true
-  device_class: temperature
+- platform: template
+  sensors:
+    hall_target_temperature:
+      unit_of_measurement: '°C'
+      value_template: "{{ state_attr('climate.hall_thermostat', 'temperature') }}"
+      device_class: temperature
 
-- platform: mqtt
-  name: "Current Temperature"
-  state_topic: "home/hall/current_temp"
-  unit_of_measurement: '°C'
-  value_template: "{{ state_attr('climate.thermostat', 'current_temperature') }}"
-  force_update: true
-  device_class: temperature
+- platform: template
+  sensors:
+    hall_current_temperature:
+      unit_of_measurement: '°C'
+      value_template: "{{ state_attr('climate.hall_thermostat', 'current_temperature') }}"
+      device_class: temperature
 
 # - platform: mqtt
 #   name: "Virtual Stat Target Temp"
@@ -30,4 +28,62 @@
   value_template: ""
   # value_template: "{{ state_attr('climate.thermostat', 'current_temperature') }}"
   force_update: true
+  device_class: temperature
+
+- platform: mqtt
+  unique_id: atmosos573839837891
+  name: "Outside Atmosphere State"
+  state_topic: "atmos_outside/tele/LWT"
+
+- platform: mqtt
+  unique_id: atmosos573839837892
+  name: "Outside Temperature"
+  state_topic: "atmos_outside/tele/SENSOR"
+  value_template: "{{ value_json['BME280'].Temperature }}"
+  unit_of_measurement: "°C"
+  device_class: temperature
+
+- platform: mqtt
+  unique_id: atmosos573839837893
+  name: "Outside Humidity"
+  state_topic: "atmos_outside/tele/SENSOR"
+  value_template: "{{ value_json['BME280'].Humidity }}"
+  unit_of_measurement: "%"
+  device_class: humidity
+
+- platform: mqtt
+  unique_id: atmosos573839837894
+  name: "Outside Pressure"
+  state_topic: "atmos_outside/tele/SENSOR"
+  value_template: "{{ value_json['BME280'].Pressure }}"
+  unit_of_measurement: "hPa" 
+  device_class: pressure
+
+- platform: mqtt
+  unique_id: atmosoatt5738333345671
+  name: "Attic Atmosphere State"
+  state_topic: "atmos_attic/tele/LWT"
+
+- platform: mqtt
+  unique_id: atmosoatt5738333345672
+  name: "Attic Temperature"
+  state_topic: "atmos_attic/tele/SENSOR"
+  value_template: "{{ value_json['AM2301'].Temperature }}"
+  unit_of_measurement: "°C"
+  device_class: temperature
+
+- platform: mqtt
+  unique_id: atmosoatt5738333345673
+  name: "Attic Humidity"
+  state_topic: "atmos_attic/tele/SENSOR"
+  value_template: "{{ value_json['AM2301'].Humidity }}"
+  unit_of_measurement: "%"
+  device_class: humidity
+
+- platform: mqtt
+  unique_id: atmosoatt5738333345674
+  name: "Attic Dew Point"
+  state_topic: "atmos_attic/tele/SENSOR"
+  value_template: "{{ value_json['AM2301'].DewPoint }}"
+  unit_of_measurement: "°C" 
   device_class: temperature

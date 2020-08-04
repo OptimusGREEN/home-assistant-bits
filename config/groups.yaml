@@ -22,9 +22,10 @@ All Lights:
     - light.playroom_centre2
     - light.playroom_tv1
     - light.playroom_tv2
-    - light.ensuite_light
     - light.bedside_lamp_1
     - light.bedside_lamp_2
+    - light.olivias_lamp
+    - light.olivias_bed_lights
 
 ########### Downstairs Lights #############
 
@@ -190,7 +191,9 @@ Upstairs Lights:
   entities:
     - switch.landing_light_switch_top
     - switch.bathroom_light_switch
-    - light.ensuite_light
+    - switch.under_bed_light
+    - light.olivias_lamp
+    - light.olivias_bed_lights
     - light.bedside_lamp_1
     - light.bedside_lamp_2
 

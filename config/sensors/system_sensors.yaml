@@ -35,37 +35,51 @@
   state_topic: "OptiSERVE/system2mqtt/LWT"
 
 - platform: mqtt
-  name: "OptiSERVE_Fusion Storage"
+  name: "OptiSERVE_SystemOS Storage"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/storage/OptiSERVE_Fusion"
+  state_topic: "OptiSERVE/disks/storage/SystemOS"
   unit_of_measurement: "%"
   icon: mdi:harddisk
 
 - platform: mqtt
   name: "OptiSERVE_1TB_1 Storage"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/storage/OptiSERVE_1TB_1"
+  state_topic: "OptiSERVE/disks/storage/1TB_1"
   unit_of_measurement: "%"
   icon: mdi:harddisk
 
 - platform: mqtt
-  name: "OptiSERVE_1TB_2 Storage"
+  name: "Optiserve_NextCloud Storage"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/storage/OptiSERVE_1TB_2"
+  state_topic: "OptiSERVE/disks/storage/NextCloud"
   unit_of_measurement: "%"
   icon: mdi:harddisk
 
 - platform: mqtt
   name: "OptiSERVE_Server Storage"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/storage/OptiSERVE_Server"
+  state_topic: "OptiSERVE/disks/storage/Server"
   unit_of_measurement: "%"
   icon: mdi:harddisk
 
 - platform: mqtt
   name: "OptiSERVE_Backup Storage"
   availability_topic: "OptiSERVE/system2mqtt/LWT"
-  state_topic: "OptiSERVE/disks/storage/OptiSERVE_Backup"
+  state_topic: "OptiSERVE/disks/storage/Backup"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "MyBook Storage"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/storage/MyBook"
+  unit_of_measurement: "%"
+  icon: mdi:harddisk
+
+- platform: mqtt
+  name: "MyBook Mini Storage"
+  availability_topic: "OptiSERVE/system2mqtt/LWT"
+  state_topic: "OptiSERVE/disks/storage/MyBookMini"
   unit_of_measurement: "%"
   icon: mdi:harddisk
 

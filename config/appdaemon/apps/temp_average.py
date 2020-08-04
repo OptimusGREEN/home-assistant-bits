@@ -6,7 +6,7 @@ class AverageTemperature(hass.Hass):
 
     def initialize(self):
 
-        self.sensors = ("sensor.bedroom_temperature", "sensor.ben_temperature", "sensor.olivia_temperature", "sensor.lounge_temperature", "sensor.playroom_temperature")
+        self.sensors = ("sensor.bedroom_temperature", "sensor.ben_temperature", "sensor.olivia_temperature", "sensor.lounge_temperature", "sensor.playroom_temperature", "sensor.hall_current_temperature")
         self.valid_sensors = None
         self.total_temp = None
         self.average = None

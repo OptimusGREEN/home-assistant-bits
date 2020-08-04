@@ -122,19 +122,16 @@ switch.wc_switch:
   icon: mdi:light-switch
 switch.kitchen_light_switch:
   icon: mdi:light-switch
-switch.olivias_lamp:
+switch.rf_socket_1:
   assumed_state: false
-switch.christmas_tree:
-  icon: mdi:power-socket
-group.christmas_lights:
-  icon: mdi:power-socket
-switch.outside_christmas_decorations:
-  icon: mdi:power-socket
-switch.outside_christmas_lights:
-  icon: mdi:power-socket
 switch.hall_light_switch_front:
   icon: mdi:light-switch
-switch.under_bed_light: {}
+switch.under_bed_light:
+  assumed_state: false
 binary_sensor.lounge_pir:
   device_class: motion
   friendly_name: Lounge PIR
+switch.fan_socket:
+  assumed_state: false
+switch.desk_phone_charger:
+  assumed_state: false

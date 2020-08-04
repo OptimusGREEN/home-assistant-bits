@@ -3,6 +3,7 @@ global_modules:
   - globals.modules.strings_lib
   - globals.modules.timestamp
   - globals.modules.database
+  - globals.modules.magnetic
 
 # playroom_rainbow_run:
 #   module: rainbow_run
@@ -15,6 +16,11 @@ global_modules:
 logme:
   module: __logme
   class: LogMe
+
+check_config:
+  module: checkconfig
+  class: CheckConfig
+  restart: False
 
 playroom_switch:
   module: playroom_switch
@@ -93,11 +99,22 @@ overwatch:
   module: optiserve_overwatch
   class: Overwatch
 
+magnetyse:
+  module: magnetic_app
+  class: MagneticApp
+  text_input_entity: "input_text.magnetic_query"
+  search_button_entity: "input_boolean.magnetic_search"
+  results_sensor: "sensor.magnetic_results"
+  filters: [["2160", "265"],["2160", "hevc"],["1080", "265"],["1080", "hevc"],["1080"]]
+  use_proxies: "False"
+  global_dependencies:
+    - globals.modules.magnetic
+
 # devtest:
 #   module: dev
 #   class: DevTesting
-#   global_dependencies:
-#     - globals.modules.timestamp
+  # global_dependencies:
+  #   - globals.modules.timestamp
 #     - globals.modules.database
 #   trigger: "input_boolean.devtestswitch3"
 #   trigger2: "input_boolean.devtestswitch4"
